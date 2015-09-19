@@ -33,9 +33,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\MidgardMessenger\MidgardMessenger.csproj">
+    <ProjectReference Include="..\MidgardMessenger\Midgard Messenger.csproj">
       <Project>{44FEC871-E09B-49F5-BAEC-5505960E14A9}</Project>
-      <Name>MidgardMessenger</Name>
+      <Name>Midgard Messenger</Name>
       <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
       <Private>False</Private>
     </ProjectReference>

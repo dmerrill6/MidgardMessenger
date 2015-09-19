@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+  <style name="AppTheme" parent="android:Theme.Material.Light">
+  <item name="android:windowNoTitle">true</item>
+    
+    <item name="android:windowActionBar">false</item>
+    <item name="android:colorPrimary">#795548</item>
+
+    <item name="android:colorPrimaryDark">#4E342E</item>
+    <item name="android:colorButtonNormal">#FB8C00</item>
+    <item name="android:colorAccent">#B71C1C</item>
+  </style>
+</resources>

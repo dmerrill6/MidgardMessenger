@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.IO;
+using PerpetualEngine.Storage;
 
 using Android.App;
 using Android.Content;
@@ -15,15 +16,23 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Android.Graphics;
 using Xamarin.Auth;
-
+using Parse;
+using Facebook;
 
 namespace MidgardMessenger
 {
-	[Activity (Label = "LoginActivity")]			
+	[Activity (Label = "Midgard Messenger")]			
 	public class LoginActivity : Activity
 	{
 		
+		private const string AppId = "908126919279823";
+		private const string ExtendedPermissions = "";
+		public const string logInDataGroup = "login_data_group";
+		FacebookClient fb;
+		bool isLoggedIn;
+		string lastMessageId;
 
 		void LoginToGoogle (bool allowCancel)
 		{
@@ -62,6 +71,9 @@ namespace MidgardMessenger
 						builder.SetTitle ("Logged in");
 						builder.SetMessage ("Name: " + obj);
 
+						var chatsIntent = new Intent(this, typeof(ChatsActivity));
+						StartActivity(chatsIntent);
+
 //						var serverRequest = HttpWebRequest.Create("http://midgard-messenger.herokuapp.com/api/users");
 //						serverRequest.ContentType = "application/json";
 //						serverRequest.Method = "POST";
@@ -87,7 +99,7 @@ namespace MidgardMessenger
 					}
 
 					builder.SetPositiveButton ("Ok", (o, e) => { });
-					builder.Create().Show();
+					//builder.Create().Show();
 				}, UIScheduler);
 			};
 
@@ -100,13 +112,94 @@ namespace MidgardMessenger
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
+
+			SimpleStorage.EditGroup = (string groupName) => {
+				return new DroidSimpleStorage(groupName, this);
+			};
+
 			SetContentView (Resource.Layout.Login);
 			Button button = FindViewById<Button> (Resource.Id.sign_in_button);
+
 			button.Click += delegate {LoginToGoogle(true);};
+					
+			Button facebooklogin = FindViewById<Button>(Resource.Id.sign_in_facebook_button);
+
+			facebooklogin.Click += async (sender, e) => {
+				var webAuth = new Intent (this, typeof(FBWebAuthActivity));
+				webAuth.PutExtra("AppId", AppId);
+				webAuth.PutExtra("ExtendedPermissions", ExtendedPermissions);
+				StartActivityForResult(webAuth, 0);
+
+			};
 
 
 //			var facebookNoCancel = FindViewById<Button> (Resource.Id.FacebookButtonNoCancel);
 //			facebookNoCancel.Click += delegate { LoginToFacebook(false);};
+		}
+		protected override void OnActivityResult (int requestCode, Result resultCode, Intent data)
+		{
+			base.OnActivityResult (requestCode, resultCode, data);
+
+			switch (resultCode) {
+			case Result.Ok:
+
+				string accessToken = data.GetStringExtra ("AccessToken");
+				string userId = data.GetStringExtra ("UserId");
+				string error = data.GetStringExtra ("Exception");
+
+				// Save access token
+				var storage = SimpleStorage.EditGroup(logInDataGroup);
+				storage.Put("access_token", accessToken);
+				storage.Put("user_id", userId);
+
+				fb = new FacebookClient (accessToken);
+
+
+				fb.GetTaskAsync ("me").ContinueWith( t => {
+					
+					if (!t.IsFaulted) {
+						var result = (IDictionary<string, object>)t.Result;
+						Console.WriteLine("entered " + t.Result);
+
+						string profileData = "Name: " + (string)result["name"] + "\n";
+
+
+						Task registerUser = new Task (async () => {
+							Console.WriteLine("logging in");
+							ParseUser user = await ParseFacebookUtils.LogInAsync (userId, accessToken, DateTime.Now.AddYears (1));
+							isLoggedIn = true;
+							Finish();
+						});
+
+						registerUser.Start ();
+					}
+				});
+
+				break;
+			case Result.Canceled:
+				Alert ("Failed to Log In", "User Cancelled", false, (res) => {} );
+				break;
+			default:
+				break;
+			}
+		}
+		public void Alert (string title, string message, bool CancelButton , Action<Result> callback)
+		{
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.SetTitle(title);
+			builder.SetMessage(message);
+
+			builder.SetPositiveButton("Ok", (sender, e) => {
+				callback(Result.Ok);
+			});
+
+			if (CancelButton) {
+				builder.SetNegativeButton("Cancel", (sender, e) => {
+					callback(Result.Canceled);
+				});
+			}
+
+			builder.Show();
 		}
 	}
 }

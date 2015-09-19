@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+    p1:orientation="vertical"
+    p1:layout_width="match_parent"
+    p1:layout_height="match_parent"
+    p1:id="@+id/linearLayout1">
+    <TextView
+        p1:text="@string/welcome_message"
+        p1:textAppearance="?android:attr/textAppearanceLarge"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/textView2"
+        p1:textAllCaps="true"
+        p1:layout_marginBottom="10.7dp"
+        p1:layout_marginTop="58.2dp"
+        p1:layout_marginRight="15.0dp"
+        p1:layout_marginLeft="15dp"
+        p1:gravity="center" />
+    <TextView
+        p1:text="@string/slogan_message"
+        p1:textAppearance="?android:attr/textAppearanceMedium"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/textView2"
+        p1:textAllCaps="true"
+        p1:layout_marginBottom="57.0dp"
+        p1:layout_marginTop="0dp"
+        p1:layout_marginRight="10dp"
+        p1:layout_marginLeft="10dp"
+        p1:gravity="center" />
+    <TextView
+        p1:text="@string/login_message"
+        p1:textAppearance="?android:attr/textAppearanceMedium"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/textView1"
+        p1:textAllCaps="true"
+        p1:layout_marginLeft="10dp"
+        p1:layout_marginTop="20dp"
+        p1:layout_marginRight="10dp"
+        p1:layout_marginBottom="20dp"
+        p1:gravity="center" />
+    <Button
+        p1:id="@+id/sign_in_button"
+        p1:background="#dd4b39"
+        p1:text="@string/sign_in_with_google"
+        p1:paddingLeft="20dp"
+        p1:paddingRight="20dp"
+        p1:gravity="center"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:textColor="#FFFFFF"
+        p1:layout_marginTop="41.9dp" />
+    <Button
+        p1:id="@+id/sign_in_facebook_button"
+        p1:background="#3b5998"
+        p1:textColor="#FFFFFF"
+        p1:text="@string/sign_in_with_facebook"
+        p1:paddingLeft="20dp"
+        p1:paddingRight="20dp"
+        p1:gravity="center"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:layout_marginTop="41.9dp" />
+</LinearLayout>

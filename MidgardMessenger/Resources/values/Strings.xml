@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="hello">Hello World, Click Me!</string>
-	<string name="app_name">MidgardMessenger</string>
+	<string name="add_contacts">Add a Viking</string>
+	<string name="app_name">Midgard Messenger</string>
+	<string name="no_contacts_added">Your men shall not perish in battle. Contact them before it\'s too late.</string>
+	<string name="search_contacts">Search for vikings using Midgard Messenger</string>
+	<string name="invite">Invite a Viking</string>
+	<string name="welcome_message">Welcome to Midgard Messenger</string>
+	<string name="slogan_message">The messaging app for real vikings</string>
+	<string name="login_message">Log in right now, before war arises...</string>
+	<string name="sign_in_with_google">Sign in with Google</string>
+	<string name="sign_in_with_facebook">Sign in with Facebook</string>
 </resources>
