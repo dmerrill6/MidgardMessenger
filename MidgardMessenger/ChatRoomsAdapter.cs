@@ -35,7 +35,11 @@ namespace MidgardMessenger
 			_chatroomLists = DatabaseAccessors.ChatRoomDatabaseAccessor.GetChatRooms ().ToList ();
 		}
 
-
+		public override void NotifyDataSetChanged ()
+		{
+			base.NotifyDataSetChanged ();
+			FillContacts ();
+		}
 
 		public override int Count {
 			get { return _chatroomLists.Count; }
@@ -57,9 +61,11 @@ namespace MidgardMessenger
 			var contactName = view.FindViewById<TextView> (Resource.Id.ContactName);
 			var contactImage = view.FindViewById<ImageView> (Resource.Id.ContactImage);
 			List<User> users = DatabaseAccessors.ChatRoomDatabaseAccessor.GetUsers (_chatroomLists [position].webID).ToList();
-			string chatroomName = "";
-			foreach (User u in users) {
-				chatroomName += u.name + " ";
+			string chatroomName = "Untitled";
+			if (users.Count > 0) {
+				chatroomName = users.ElementAt (0).name;
+				if (users.Count > 1 && chatroomName == DatabaseAccessors.CurrentUser ().name)
+					chatroomName = users.ElementAt (1).name;
 			}
 			contactName.Text = chatroomName;
 

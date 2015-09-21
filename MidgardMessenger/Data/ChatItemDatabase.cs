@@ -26,6 +26,14 @@ namespace MidgardMessenger
 			}
 		}
 
+		public IEnumerable<ChatItem> GetChats (string chatroomId)
+		{
+			lock (locker) {
+				return (from i in database.Table<ChatItem> ().Where(x => x.chatroomID == chatroomId)
+					select i).ToList ();
+			}
+		}
+
 		public ChatItem GetItem (int id)
 		{
 			lock (locker) {

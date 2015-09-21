@@ -22,10 +22,15 @@ namespace MidgardMessenger
 	{
 		protected bool isLoggedIn;
 		protected ParseUser user;
+		protected static ChatRoomsAdapter chatroomsAdapter;
+		public static void NotifyChatRoomsUpdate(){
+			if(chatroomsAdapter != null)
+				chatroomsAdapter.NotifyDataSetChanged();
+		}
 
 
-		protected void ReloadChatRooms(){
-			var chatroomsAdapter = new ChatRoomsAdapter (this);
+		protected void CreateChatRooms(){
+			chatroomsAdapter = new ChatRoomsAdapter (this);
 			var chatRoomsListView = FindViewById<ListView> (Resource.Id.chatroomsListView);
 			chatRoomsListView.Adapter = chatroomsAdapter;
 			chatRoomsListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
@@ -77,7 +82,7 @@ namespace MidgardMessenger
 
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
-			ReloadChatRooms ();
+			CreateChatRooms ();
 
 			var toolbar = FindViewById<Toolbar> (Resource.Id.toolbar);
 			//Toolbar will now take on default Action Bar characteristics

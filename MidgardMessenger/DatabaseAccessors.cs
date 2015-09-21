@@ -7,6 +7,7 @@ namespace MidgardMessenger
 	{
 		static UserDatabase userDatabase;
 		static ChatRoomDatabase chatroomDatabase;
+		static ChatItemDatabase chatDatabase;
 
 		public static UserDatabase UserDatabaseAccessor{
 			get{
@@ -22,6 +23,14 @@ namespace MidgardMessenger
 					chatroomDatabase = new ChatRoomDatabase ();
 				}
 				return chatroomDatabase;
+			}
+		}
+		public static ChatItemDatabase ChatDatabaseAccessor{
+			get{
+				if (chatDatabase == null) {
+					chatDatabase = new ChatItemDatabase ();
+				}
+				return chatDatabase;
 			}
 		}
 		public DatabaseAccessors ()

@@ -13,7 +13,8 @@ namespace MidgardMessenger
 		public int ID {get;set;}
 		public string senderID { get; set;}
 		public string content { get; set; }
-		public int roomID { get; set; }
+		public string chatroomID { get; set; }
+		public string webId { get; set; }
 	}
 }
 

@@ -26,10 +26,16 @@
             android:inputType="textMultiLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
             android:paddingBottom="10dp"
             android:paddingTop="12dp"
             android:layout_weight="1"
-            android:background="@android:color/holo_blue_bright"
+            android:background="#EADFA0"
             android:id="@+id/chatInputTextBox" />
+        <Button
+            android:text="@string/send"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/send_message_button" />
     </LinearLayout>
 </RelativeLayout>

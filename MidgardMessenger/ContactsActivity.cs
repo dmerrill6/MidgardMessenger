@@ -41,6 +41,13 @@ namespace MidgardMessenger
 					var crus = DatabaseAccessors.ChatRoomDatabaseAccessor.GetChatRoomUsers(newchatroom.webID);
 					foreach(ChatRoomUser cru in crus)
 						await pcrd.SaveChatRoomUsersAsync(cru);
+					ChatsActivity.NotifyChatRoomsUpdate();
+
+					var intent = new Intent(this, typeof(ChatRoomActivity));
+					intent.PutExtra("chatroom", newchatroom.webID);
+					StartActivity(intent);
+
+					this.Finish();
 				};
 			};
 
