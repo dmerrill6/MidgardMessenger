@@ -13,15 +13,16 @@ using Android.Widget;
 using Android.Provider;
 namespace MidgardMessenger
 {
-	public class ContactsAdapter : BaseAdapter
+	public class ChatRoomsAdapter : BaseAdapter
 	{
-		List<User> _contactList;
+		List<ChatRoom> _chatroomLists;
 		Activity _activity;
 
-		public ContactsAdapter (Activity activity)
+		public ChatRoomsAdapter (Activity activity)
 		{
 			_activity = activity;
 			FillContacts ();
+			Console.WriteLine ("ttestes" + _chatroomLists.Count);
 		}
 
 		public override Java.Lang.Object GetItem (int position)
@@ -31,22 +32,22 @@ namespace MidgardMessenger
 
 		void FillContacts ()
 		{
-			_contactList = DatabaseAccessors.UserDatabaseAccessor.GetUsers ().ToList ();
+			_chatroomLists = DatabaseAccessors.ChatRoomDatabaseAccessor.GetChatRooms ().ToList ();
 		}
 
 
 
 		public override int Count {
-			get { return _contactList.Count; }
+			get { return _chatroomLists.Count; }
 		}
 
-		public User GetUserAt(int position)
+		public ChatRoom GetChatRoomAt(int position)
 		{
-			return _contactList [position];
+			return _chatroomLists [position];
 		}
 
 		public override long GetItemId (int position) {
-			return _contactList [position].ID;
+			return 0;
 		}
 
 		public override View GetView (int position, View convertView, ViewGroup parent)
@@ -55,16 +56,21 @@ namespace MidgardMessenger
 				Resource.Layout.ContactListItem, parent, false);
 			var contactName = view.FindViewById<TextView> (Resource.Id.ContactName);
 			var contactImage = view.FindViewById<ImageView> (Resource.Id.ContactImage);
-			contactName.Text = _contactList [position].name;
+			List<User> users = DatabaseAccessors.ChatRoomDatabaseAccessor.GetUsers (_chatroomLists [position].webID).ToList();
+			string chatroomName = "";
+			foreach (User u in users) {
+				chatroomName += u.name + " ";
+			}
+			contactName.Text = chatroomName;
 
 
 			contactImage = view.FindViewById<ImageView> (Resource.Id.ContactImage);
 			contactImage.SetImageResource (Resource.Drawable.ContactImage);
-		
+
 
 			return view;
 		}
 
-	
+
 	}
 }

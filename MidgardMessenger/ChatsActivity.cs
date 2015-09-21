@@ -11,6 +11,9 @@ using Android.Database;
 using Parse;
 using System.Threading.Tasks;
 using PerpetualEngine.Storage;
+using Facebook;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MidgardMessenger
 {
@@ -20,24 +23,53 @@ namespace MidgardMessenger
 		protected bool isLoggedIn;
 		protected ParseUser user;
 
+
+		protected void ReloadChatRooms(){
+			var chatroomsAdapter = new ChatRoomsAdapter (this);
+			var chatRoomsListView = FindViewById<ListView> (Resource.Id.chatroomsListView);
+			chatRoomsListView.Adapter = chatroomsAdapter;
+			chatRoomsListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
+				ChatRoom currChatRoom = chatroomsAdapter.GetChatRoomAt(e.Position);
+				var intent = new Intent(this, typeof(ChatRoomActivity));
+				intent.PutExtra("chatroom", currChatRoom.webID);
+				StartActivity(intent);
+			};
+		}
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
+
 			// Try to load access token
 			SimpleStorage.EditGroup = (string groupName) => {
 				return new DroidSimpleStorage(groupName, this);
 			};
 			var storage = SimpleStorage.EditGroup(LoginActivity.logInDataGroup);
-			var accessToken = storage.Get("access_token2");
+			var accessToken = storage.Get("access_token");
 			var userId = storage.Get("user_id");
+			if (ParseUser.CurrentUser != null) {
+				Task getUserInfoTask = new Task (async () => {
+					var query  = ParseObject.GetQuery ("UserInformation").WhereEqualTo ("userId", ParseUser.CurrentUser.ObjectId);
+					IEnumerable<ParseObject> userInfo = await query.FindAsync();
 
-			if (accessToken != null) {
-				Task registerUser = new Task (async () => {
-					Console.WriteLine ("logging in");
-					user = await ParseFacebookUtils.LogInAsync (userId, accessToken, DateTime.Now.AddYears (1));
-					isLoggedIn = true;
+					if (userInfo.ToList().Count == 0) {
+						var fb = new FacebookClient ();
+						fb.AccessToken = accessToken;
+						fb.GetTaskAsync ("me").ContinueWith (t => {
+							if(!t.IsFaulted){
+								var result = (IDictionary<string, object>) t.Result;
+								string profileName = (string) result["name"];
+								//ParseUser.CurrentUser["name"] = profileName;
+								ParseObject newUserInfo = new ParseObject("UserInformation");
+								newUserInfo["userId"] = ParseUser.CurrentUser.ObjectId;
+								newUserInfo["fullName"] = profileName;
+								newUserInfo.SaveAsync();
+							}
+						});
+					}
 				});
-				registerUser.Start ();
+				getUserInfoTask.Start ();
+
 			} else {
 				var loginIntent = new Intent(this, typeof(LoginActivity));
 				StartActivity(loginIntent);
@@ -45,6 +77,8 @@ namespace MidgardMessenger
 
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
+			ReloadChatRooms ();
+
 			var toolbar = FindViewById<Toolbar> (Resource.Id.toolbar);
 			//Toolbar will now take on default Action Bar characteristics
 			SetActionBar (toolbar);
