@@ -1490,6 +1490,29 @@ namespace MidgardMessenger
 			global::Droid.Resource.String.library_name = global::MidgardMessenger.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Resource.String.ApplicationName = global::MidgardMessenger.Resource.String.ApplicationName;
 			global::Xamarin.Forms.Platform.Resource.String.Hello = global::MidgardMessenger.Resource.String.Hello;
+			global::com.refractored.fab.Resource.Attribute.fab_colorDisabled = global::MidgardMessenger.Resource.Attribute.fab_colorDisabled;
+			global::com.refractored.fab.Resource.Attribute.fab_colorNormal = global::MidgardMessenger.Resource.Attribute.fab_colorNormal;
+			global::com.refractored.fab.Resource.Attribute.fab_colorPressed = global::MidgardMessenger.Resource.Attribute.fab_colorPressed;
+			global::com.refractored.fab.Resource.Attribute.fab_colorRipple = global::MidgardMessenger.Resource.Attribute.fab_colorRipple;
+			global::com.refractored.fab.Resource.Attribute.fab_shadow = global::MidgardMessenger.Resource.Attribute.fab_shadow;
+			global::com.refractored.fab.Resource.Attribute.fab_size = global::MidgardMessenger.Resource.Attribute.fab_size;
+			global::com.refractored.fab.Resource.Color.fab_material_blue_500 = global::MidgardMessenger.Resource.Color.fab_material_blue_500;
+			global::com.refractored.fab.Resource.Dimension.fab_elevation_lollipop = global::MidgardMessenger.Resource.Dimension.fab_elevation_lollipop;
+			global::com.refractored.fab.Resource.Dimension.fab_scroll_threshold = global::MidgardMessenger.Resource.Dimension.fab_scroll_threshold;
+			global::com.refractored.fab.Resource.Dimension.fab_shadow_size = global::MidgardMessenger.Resource.Dimension.fab_shadow_size;
+			global::com.refractored.fab.Resource.Dimension.fab_size_mini = global::MidgardMessenger.Resource.Dimension.fab_size_mini;
+			global::com.refractored.fab.Resource.Dimension.fab_size_normal = global::MidgardMessenger.Resource.Dimension.fab_size_normal;
+			global::com.refractored.fab.Resource.Drawable.fab_shadow = global::MidgardMessenger.Resource.Drawable.fab_shadow;
+			global::com.refractored.fab.Resource.Drawable.fab_shadow_mini = global::MidgardMessenger.Resource.Drawable.fab_shadow_mini;
+			global::com.refractored.fab.Resource.Id.mini = global::MidgardMessenger.Resource.Id.mini;
+			global::com.refractored.fab.Resource.Id.normal = global::MidgardMessenger.Resource.Id.normal;
+			global::com.refractored.fab.Resource.Styleable.FloatingActionButton = global::MidgardMessenger.Resource.Styleable.FloatingActionButton;
+			global::com.refractored.fab.Resource.Styleable.FloatingActionButton_fab_colorDisabled = global::MidgardMessenger.Resource.Styleable.FloatingActionButton_fab_colorDisabled;
+			global::com.refractored.fab.Resource.Styleable.FloatingActionButton_fab_colorNormal = global::MidgardMessenger.Resource.Styleable.FloatingActionButton_fab_colorNormal;
+			global::com.refractored.fab.Resource.Styleable.FloatingActionButton_fab_colorPressed = global::MidgardMessenger.Resource.Styleable.FloatingActionButton_fab_colorPressed;
+			global::com.refractored.fab.Resource.Styleable.FloatingActionButton_fab_colorRipple = global::MidgardMessenger.Resource.Styleable.FloatingActionButton_fab_colorRipple;
+			global::com.refractored.fab.Resource.Styleable.FloatingActionButton_fab_shadow = global::MidgardMessenger.Resource.Styleable.FloatingActionButton_fab_shadow;
+			global::com.refractored.fab.Resource.Styleable.FloatingActionButton_fab_size = global::MidgardMessenger.Resource.Styleable.FloatingActionButton_fab_size;
 		}
 		
 		public partial class Animation
@@ -1864,6 +1887,24 @@ namespace MidgardMessenger
 			
 			// aapt resource value: 0x7f010007
 			public const int externalRouteEnabledDrawable = 2130771975;
+			
+			// aapt resource value: 0x7f0100f9
+			public const int fab_colorDisabled = 2130772217;
+			
+			// aapt resource value: 0x7f0100f8
+			public const int fab_colorNormal = 2130772216;
+			
+			// aapt resource value: 0x7f0100f7
+			public const int fab_colorPressed = 2130772215;
+			
+			// aapt resource value: 0x7f0100fa
+			public const int fab_colorRipple = 2130772218;
+			
+			// aapt resource value: 0x7f0100fb
+			public const int fab_shadow = 2130772219;
+			
+			// aapt resource value: 0x7f0100fc
+			public const int fab_size = 2130772220;
 			
 			// aapt resource value: 0x7f0100d4
 			public const int fragmentMode = 2130772180;
@@ -2326,29 +2367,29 @@ namespace MidgardMessenger
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f0b004a
-			public const int abc_background_cache_hint_selector_material_dark = 2131427402;
-			
 			// aapt resource value: 0x7f0b004b
-			public const int abc_background_cache_hint_selector_material_light = 2131427403;
+			public const int abc_background_cache_hint_selector_material_dark = 2131427403;
+			
+			// aapt resource value: 0x7f0b004c
+			public const int abc_background_cache_hint_selector_material_light = 2131427404;
 			
 			// aapt resource value: 0x7f0b0000
 			public const int abc_input_method_navigation_guard = 2131427328;
 			
-			// aapt resource value: 0x7f0b004c
-			public const int abc_primary_text_disable_only_material_dark = 2131427404;
-			
 			// aapt resource value: 0x7f0b004d
-			public const int abc_primary_text_disable_only_material_light = 2131427405;
+			public const int abc_primary_text_disable_only_material_dark = 2131427405;
 			
 			// aapt resource value: 0x7f0b004e
-			public const int abc_primary_text_material_dark = 2131427406;
+			public const int abc_primary_text_disable_only_material_light = 2131427406;
 			
 			// aapt resource value: 0x7f0b004f
-			public const int abc_primary_text_material_light = 2131427407;
+			public const int abc_primary_text_material_dark = 2131427407;
 			
 			// aapt resource value: 0x7f0b0050
-			public const int abc_search_url_text = 2131427408;
+			public const int abc_primary_text_material_light = 2131427408;
+			
+			// aapt resource value: 0x7f0b0051
+			public const int abc_search_url_text = 2131427409;
 			
 			// aapt resource value: 0x7f0b0001
 			public const int abc_search_url_text_normal = 2131427329;
@@ -2359,11 +2400,11 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0b0003
 			public const int abc_search_url_text_selected = 2131427331;
 			
-			// aapt resource value: 0x7f0b0051
-			public const int abc_secondary_text_material_dark = 2131427409;
-			
 			// aapt resource value: 0x7f0b0052
-			public const int abc_secondary_text_material_light = 2131427410;
+			public const int abc_secondary_text_material_dark = 2131427410;
+			
+			// aapt resource value: 0x7f0b0053
+			public const int abc_secondary_text_material_light = 2131427411;
 			
 			// aapt resource value: 0x7f0b0004
 			public const int accent_material_dark = 2131427332;
@@ -2437,11 +2478,11 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0b0045
 			public const int common_signin_btn_light_text_pressed = 2131427397;
 			
-			// aapt resource value: 0x7f0b0053
-			public const int common_signin_btn_text_dark = 2131427411;
-			
 			// aapt resource value: 0x7f0b0054
-			public const int common_signin_btn_text_light = 2131427412;
+			public const int common_signin_btn_text_dark = 2131427412;
+			
+			// aapt resource value: 0x7f0b0055
+			public const int common_signin_btn_text_light = 2131427413;
 			
 			// aapt resource value: 0x7f0b0012
 			public const int dim_foreground_disabled_material_dark = 2131427346;
@@ -2454,6 +2495,9 @@ namespace MidgardMessenger
 			
 			// aapt resource value: 0x7f0b0015
 			public const int dim_foreground_material_light = 2131427349;
+			
+			// aapt resource value: 0x7f0b004a
+			public const int fab_material_blue_500 = 2131427402;
 			
 			// aapt resource value: 0x7f0b0016
 			public const int highlighted_text_material_dark = 2131427350;
@@ -2536,11 +2580,11 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0b0030
 			public const int switch_thumb_disabled_material_light = 2131427376;
 			
-			// aapt resource value: 0x7f0b0055
-			public const int switch_thumb_material_dark = 2131427413;
-			
 			// aapt resource value: 0x7f0b0056
-			public const int switch_thumb_material_light = 2131427414;
+			public const int switch_thumb_material_dark = 2131427414;
+			
+			// aapt resource value: 0x7f0b0057
+			public const int switch_thumb_material_light = 2131427415;
 			
 			// aapt resource value: 0x7f0b0031
 			public const int switch_thumb_normal_material_dark = 2131427377;
@@ -2587,11 +2631,11 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0b003f
 			public const int wallet_link_text_light = 2131427391;
 			
-			// aapt resource value: 0x7f0b0057
-			public const int wallet_primary_text_holo_light = 2131427415;
-			
 			// aapt resource value: 0x7f0b0058
-			public const int wallet_secondary_text_holo_dark = 2131427416;
+			public const int wallet_primary_text_holo_light = 2131427416;
+			
+			// aapt resource value: 0x7f0b0059
+			public const int wallet_secondary_text_holo_dark = 2131427417;
 			
 			static Color()
 			{
@@ -2803,6 +2847,21 @@ namespace MidgardMessenger
 			
 			// aapt resource value: 0x7f070042
 			public const int disabled_alpha_material_light = 2131165250;
+			
+			// aapt resource value: 0x7f07004a
+			public const int fab_elevation_lollipop = 2131165258;
+			
+			// aapt resource value: 0x7f070049
+			public const int fab_scroll_threshold = 2131165257;
+			
+			// aapt resource value: 0x7f070048
+			public const int fab_shadow_size = 2131165256;
+			
+			// aapt resource value: 0x7f070047
+			public const int fab_size_mini = 2131165255;
+			
+			// aapt resource value: 0x7f070046
+			public const int fab_size_normal = 2131165254;
 			
 			// aapt resource value: 0x7f070000
 			public const int mr_media_route_controller_art_max_height = 2131165184;
@@ -3103,127 +3162,136 @@ namespace MidgardMessenger
 			public const int ContactImage = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int ic_cast_dark = 2130837595;
+			public const int fab_shadow = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int ic_cast_disabled_light = 2130837596;
+			public const int fab_shadow_mini = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int ic_cast_light = 2130837597;
+			public const int ic_add_white_24dp = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int ic_cast_off_light = 2130837598;
+			public const int ic_cast_dark = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int ic_cast_on_0_light = 2130837599;
+			public const int ic_cast_disabled_light = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int ic_cast_on_1_light = 2130837600;
+			public const int ic_cast_light = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int ic_cast_on_2_light = 2130837601;
+			public const int ic_cast_off_light = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int ic_cast_on_light = 2130837602;
+			public const int ic_cast_on_0_light = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int ic_media_pause = 2130837603;
+			public const int ic_cast_on_1_light = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int ic_media_play = 2130837604;
+			public const int ic_cast_on_2_light = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int ic_media_route_disabled_mono_dark = 2130837605;
+			public const int ic_cast_on_light = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int ic_media_route_off_mono_dark = 2130837606;
+			public const int ic_media_pause = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int ic_media_route_on_0_mono_dark = 2130837607;
+			public const int ic_media_play = 2130837607;
 			
 			// aapt resource value: 0x7f020068
-			public const int ic_media_route_on_1_mono_dark = 2130837608;
+			public const int ic_media_route_disabled_mono_dark = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int ic_media_route_on_2_mono_dark = 2130837609;
+			public const int ic_media_route_off_mono_dark = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int ic_media_route_on_mono_dark = 2130837610;
+			public const int ic_media_route_on_0_mono_dark = 2130837610;
 			
 			// aapt resource value: 0x7f02006b
-			public const int ic_pause_dark = 2130837611;
+			public const int ic_media_route_on_1_mono_dark = 2130837611;
 			
 			// aapt resource value: 0x7f02006c
-			public const int ic_pause_light = 2130837612;
+			public const int ic_media_route_on_2_mono_dark = 2130837612;
 			
 			// aapt resource value: 0x7f02006d
-			public const int ic_play_dark = 2130837613;
+			public const int ic_media_route_on_mono_dark = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int ic_play_light = 2130837614;
+			public const int ic_pause_dark = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int ic_plusone_medium_off_client = 2130837615;
+			public const int ic_pause_light = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int ic_plusone_small_off_client = 2130837616;
+			public const int ic_play_dark = 2130837616;
 			
 			// aapt resource value: 0x7f020071
-			public const int ic_plusone_standard_off_client = 2130837617;
+			public const int ic_play_light = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int ic_plusone_tall_off_client = 2130837618;
+			public const int ic_plusone_medium_off_client = 2130837618;
 			
 			// aapt resource value: 0x7f020073
-			public const int ic_setting_dark = 2130837619;
+			public const int ic_plusone_small_off_client = 2130837619;
 			
 			// aapt resource value: 0x7f020074
-			public const int ic_setting_light = 2130837620;
+			public const int ic_plusone_standard_off_client = 2130837620;
 			
 			// aapt resource value: 0x7f020075
-			public const int Icon = 2130837621;
+			public const int ic_plusone_tall_off_client = 2130837621;
 			
 			// aapt resource value: 0x7f020076
-			public const int mr_ic_audio_vol = 2130837622;
+			public const int ic_setting_dark = 2130837622;
 			
 			// aapt resource value: 0x7f020077
-			public const int mr_ic_media_route_connecting_mono_dark = 2130837623;
+			public const int ic_setting_light = 2130837623;
 			
 			// aapt resource value: 0x7f020078
-			public const int mr_ic_media_route_connecting_mono_light = 2130837624;
+			public const int Icon = 2130837624;
 			
 			// aapt resource value: 0x7f020079
-			public const int mr_ic_media_route_mono_dark = 2130837625;
+			public const int mr_ic_audio_vol = 2130837625;
 			
 			// aapt resource value: 0x7f02007a
-			public const int mr_ic_media_route_mono_light = 2130837626;
+			public const int mr_ic_media_route_connecting_mono_dark = 2130837626;
 			
 			// aapt resource value: 0x7f02007b
-			public const int mr_ic_pause_dark = 2130837627;
+			public const int mr_ic_media_route_connecting_mono_light = 2130837627;
 			
 			// aapt resource value: 0x7f02007c
-			public const int mr_ic_pause_light = 2130837628;
+			public const int mr_ic_media_route_mono_dark = 2130837628;
 			
 			// aapt resource value: 0x7f02007d
-			public const int mr_ic_play_dark = 2130837629;
+			public const int mr_ic_media_route_mono_light = 2130837629;
 			
 			// aapt resource value: 0x7f02007e
-			public const int mr_ic_play_light = 2130837630;
+			public const int mr_ic_pause_dark = 2130837630;
 			
 			// aapt resource value: 0x7f02007f
-			public const int mr_ic_settings_dark = 2130837631;
+			public const int mr_ic_pause_light = 2130837631;
 			
 			// aapt resource value: 0x7f020080
-			public const int mr_ic_settings_light = 2130837632;
-			
-			// aapt resource value: 0x7f020083
-			public const int notification_template_icon_bg = 2130837635;
+			public const int mr_ic_play_dark = 2130837632;
 			
 			// aapt resource value: 0x7f020081
-			public const int powered_by_google_dark = 2130837633;
+			public const int mr_ic_play_light = 2130837633;
 			
 			// aapt resource value: 0x7f020082
-			public const int powered_by_google_light = 2130837634;
+			public const int mr_ic_settings_dark = 2130837634;
+			
+			// aapt resource value: 0x7f020083
+			public const int mr_ic_settings_light = 2130837635;
+			
+			// aapt resource value: 0x7f020086
+			public const int notification_template_icon_bg = 2130837638;
+			
+			// aapt resource value: 0x7f020084
+			public const int powered_by_google_dark = 2130837636;
+			
+			// aapt resource value: 0x7f020085
+			public const int powered_by_google_light = 2130837637;
 			
 			static Drawable()
 			{
@@ -3238,41 +3306,41 @@ namespace MidgardMessenger
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0c006c
-			public const int ContactImage = 2131492972;
-			
 			// aapt resource value: 0x7f0c006d
-			public const int ContactName = 2131492973;
+			public const int ContactImage = 2131492973;
 			
-			// aapt resource value: 0x7f0c0087
-			public const int action0 = 2131492999;
+			// aapt resource value: 0x7f0c006e
+			public const int ContactName = 2131492974;
 			
-			// aapt resource value: 0x7f0c0057
-			public const int action_bar = 2131492951;
+			// aapt resource value: 0x7f0c0088
+			public const int action0 = 2131493000;
+			
+			// aapt resource value: 0x7f0c0058
+			public const int action_bar = 2131492952;
 			
 			// aapt resource value: 0x7f0c0000
 			public const int action_bar_activity_content = 2131492864;
 			
-			// aapt resource value: 0x7f0c0056
-			public const int action_bar_container = 2131492950;
+			// aapt resource value: 0x7f0c0057
+			public const int action_bar_container = 2131492951;
 			
-			// aapt resource value: 0x7f0c0052
-			public const int action_bar_root = 2131492946;
+			// aapt resource value: 0x7f0c0053
+			public const int action_bar_root = 2131492947;
 			
 			// aapt resource value: 0x7f0c0001
 			public const int action_bar_spinner = 2131492865;
 			
+			// aapt resource value: 0x7f0c003c
+			public const int action_bar_subtitle = 2131492924;
+			
 			// aapt resource value: 0x7f0c003b
-			public const int action_bar_subtitle = 2131492923;
+			public const int action_bar_title = 2131492923;
 			
-			// aapt resource value: 0x7f0c003a
-			public const int action_bar_title = 2131492922;
+			// aapt resource value: 0x7f0c0059
+			public const int action_context_bar = 2131492953;
 			
-			// aapt resource value: 0x7f0c0058
-			public const int action_context_bar = 2131492952;
-			
-			// aapt resource value: 0x7f0c008b
-			public const int action_divider = 2131493003;
+			// aapt resource value: 0x7f0c008c
+			public const int action_divider = 2131493004;
 			
 			// aapt resource value: 0x7f0c0002
 			public const int action_menu_divider = 2131492866;
@@ -3280,20 +3348,20 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0003
 			public const int action_menu_presenter = 2131492867;
 			
+			// aapt resource value: 0x7f0c0055
+			public const int action_mode_bar = 2131492949;
+			
 			// aapt resource value: 0x7f0c0054
-			public const int action_mode_bar = 2131492948;
-			
-			// aapt resource value: 0x7f0c0053
-			public const int action_mode_bar_stub = 2131492947;
-			
-			// aapt resource value: 0x7f0c003c
-			public const int action_mode_close_button = 2131492924;
+			public const int action_mode_bar_stub = 2131492948;
 			
 			// aapt resource value: 0x7f0c003d
-			public const int activity_chooser_view_content = 2131492925;
+			public const int action_mode_close_button = 2131492925;
 			
-			// aapt resource value: 0x7f0c0076
-			public const int add_contact = 2131492982;
+			// aapt resource value: 0x7f0c003e
+			public const int activity_chooser_view_content = 2131492926;
+			
+			// aapt resource value: 0x7f0c0077
+			public const int add_contact = 2131492983;
 			
 			// aapt resource value: 0x7f0c0038
 			public const int adjust_height = 2131492920;
@@ -3301,14 +3369,14 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0039
 			public const int adjust_width = 2131492921;
 			
-			// aapt resource value: 0x7f0c0047
-			public const int alertTitle = 2131492935;
+			// aapt resource value: 0x7f0c0048
+			public const int alertTitle = 2131492936;
 			
 			// aapt resource value: 0x7f0c0017
 			public const int always = 2131492887;
 			
-			// aapt resource value: 0x7f0c007e
-			public const int art = 2131492990;
+			// aapt resource value: 0x7f0c007f
+			public const int art = 2131492991;
 			
 			// aapt resource value: 0x7f0c0014
 			public const int beginning = 2131492884;
@@ -3316,11 +3384,11 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c002d
 			public const int book_now = 2131492909;
 			
-			// aapt resource value: 0x7f0c004d
-			public const int buttonPanel = 2131492941;
+			// aapt resource value: 0x7f0c004e
+			public const int buttonPanel = 2131492942;
 			
-			// aapt resource value: 0x7f0c0084
-			public const int buttons = 2131492996;
+			// aapt resource value: 0x7f0c0085
+			public const int buttons = 2131492997;
 			
 			// aapt resource value: 0x7f0c002a
 			public const int buyButton = 2131492906;
@@ -3331,32 +3399,32 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c002f
 			public const int buy_with_google = 2131492911;
 			
-			// aapt resource value: 0x7f0c0088
-			public const int cancel_action = 2131493000;
+			// aapt resource value: 0x7f0c0089
+			public const int cancel_action = 2131493001;
 			
 			// aapt resource value: 0x7f0c0009
 			public const int cast_notification_id = 2131492873;
 			
-			// aapt resource value: 0x7f0c006a
-			public const int chatInputTextBox = 2131492970;
-			
-			// aapt resource value: 0x7f0c0067
-			public const int chat_bubble_message = 2131492967;
-			
-			// aapt resource value: 0x7f0c0066
-			public const int chat_bubble_userName = 2131492966;
-			
-			// aapt resource value: 0x7f0c0077
-			public const int chatroomsListView = 2131492983;
+			// aapt resource value: 0x7f0c006b
+			public const int chatInputTextBox = 2131492971;
 			
 			// aapt resource value: 0x7f0c0068
-			public const int chatsListView = 2131492968;
+			public const int chat_bubble_message = 2131492968;
 			
-			// aapt resource value: 0x7f0c004f
-			public const int checkbox = 2131492943;
+			// aapt resource value: 0x7f0c0067
+			public const int chat_bubble_userName = 2131492967;
 			
-			// aapt resource value: 0x7f0c008e
-			public const int chronometer = 2131493006;
+			// aapt resource value: 0x7f0c0078
+			public const int chatroomsListView = 2131492984;
+			
+			// aapt resource value: 0x7f0c0069
+			public const int chatsListView = 2131492969;
+			
+			// aapt resource value: 0x7f0c0050
+			public const int checkbox = 2131492944;
+			
+			// aapt resource value: 0x7f0c008f
+			public const int chronometer = 2131493007;
 			
 			// aapt resource value: 0x7f0c0031
 			public const int classic = 2131492913;
@@ -3367,23 +3435,23 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0070
 			public const int contactsListView = 2131492976;
 			
-			// aapt resource value: 0x7f0c0048
-			public const int contentPanel = 2131492936;
+			// aapt resource value: 0x7f0c0049
+			public const int contentPanel = 2131492937;
+			
+			// aapt resource value: 0x7f0c004d
+			public const int custom = 2131492941;
 			
 			// aapt resource value: 0x7f0c004c
-			public const int custom = 2131492940;
+			public const int customPanel = 2131492940;
 			
-			// aapt resource value: 0x7f0c004b
-			public const int customPanel = 2131492939;
+			// aapt resource value: 0x7f0c0056
+			public const int decor_content_parent = 2131492950;
 			
-			// aapt resource value: 0x7f0c0055
-			public const int decor_content_parent = 2131492949;
+			// aapt resource value: 0x7f0c0041
+			public const int default_activity_button = 2131492929;
 			
-			// aapt resource value: 0x7f0c0040
-			public const int default_activity_button = 2131492928;
-			
-			// aapt resource value: 0x7f0c007d
-			public const int default_control_frame = 2131492989;
+			// aapt resource value: 0x7f0c007e
+			public const int default_control_frame = 2131492990;
 			
 			// aapt resource value: 0x7f0c001c
 			public const int dialog = 2131492892;
@@ -3391,8 +3459,8 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c000d
 			public const int disableHome = 2131492877;
 			
-			// aapt resource value: 0x7f0c0085
-			public const int disconnect = 2131492997;
+			// aapt resource value: 0x7f0c0086
+			public const int disconnect = 2131492998;
 			
 			// aapt resource value: 0x7f0c0030
 			public const int donate_with_google = 2131492912;
@@ -3400,20 +3468,20 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c001d
 			public const int dropdown = 2131492893;
 			
-			// aapt resource value: 0x7f0c0059
-			public const int edit_query = 2131492953;
+			// aapt resource value: 0x7f0c005a
+			public const int edit_query = 2131492954;
 			
 			// aapt resource value: 0x7f0c0015
 			public const int end = 2131492885;
 			
-			// aapt resource value: 0x7f0c0093
-			public const int end_padder = 2131493011;
+			// aapt resource value: 0x7f0c0094
+			public const int end_padder = 2131493012;
 			
-			// aapt resource value: 0x7f0c003e
-			public const int expand_activities_button = 2131492926;
+			// aapt resource value: 0x7f0c003f
+			public const int expand_activities_button = 2131492927;
 			
-			// aapt resource value: 0x7f0c004e
-			public const int expanded_menu = 2131492942;
+			// aapt resource value: 0x7f0c004f
+			public const int expanded_menu = 2131492943;
 			
 			// aapt resource value: 0x7f0c0032
 			public const int grayscale = 2131492914;
@@ -3433,62 +3501,62 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0035
 			public const int hybrid = 2131492917;
 			
-			// aapt resource value: 0x7f0c0042
-			public const int icon = 2131492930;
+			// aapt resource value: 0x7f0c0043
+			public const int icon = 2131492931;
 			
 			// aapt resource value: 0x7f0c0019
 			public const int ifRoom = 2131492889;
 			
-			// aapt resource value: 0x7f0c003f
-			public const int image = 2131492927;
+			// aapt resource value: 0x7f0c0040
+			public const int image = 2131492928;
 			
-			// aapt resource value: 0x7f0c0094
-			public const int imgUser = 2131493012;
+			// aapt resource value: 0x7f0c0095
+			public const int imgUser = 2131493013;
 			
-			// aapt resource value: 0x7f0c0092
-			public const int info = 2131493010;
+			// aapt resource value: 0x7f0c0093
+			public const int info = 2131493011;
 			
-			// aapt resource value: 0x7f0c006f
-			public const int invite = 2131492975;
+			// aapt resource value: 0x7f0c008d
+			public const int line1 = 2131493005;
 			
-			// aapt resource value: 0x7f0c008c
-			public const int line1 = 2131493004;
+			// aapt resource value: 0x7f0c0091
+			public const int line3 = 2131493009;
 			
-			// aapt resource value: 0x7f0c0090
-			public const int line3 = 2131493008;
-			
-			// aapt resource value: 0x7f0c0069
-			public const int linearLayout1 = 2131492969;
+			// aapt resource value: 0x7f0c006a
+			public const int linearLayout1 = 2131492970;
 			
 			// aapt resource value: 0x7f0c000a
 			public const int listMode = 2131492874;
 			
-			// aapt resource value: 0x7f0c0041
-			public const int list_item = 2131492929;
+			// aapt resource value: 0x7f0c0042
+			public const int list_item = 2131492930;
 			
 			// aapt resource value: 0x7f0c002c
 			public const int match_parent = 2131492908;
 			
-			// aapt resource value: 0x7f0c008a
-			public const int media_actions = 2131493002;
+			// aapt resource value: 0x7f0c008b
+			public const int media_actions = 2131493003;
 			
-			// aapt resource value: 0x7f0c007c
-			public const int media_route_control_frame = 2131492988;
+			// aapt resource value: 0x7f0c007d
+			public const int media_route_control_frame = 2131492989;
 			
-			// aapt resource value: 0x7f0c0078
-			public const int media_route_list = 2131492984;
-			
-			// aapt resource value: 0x7f0c0082
-			public const int media_route_volume_layout = 2131492994;
+			// aapt resource value: 0x7f0c0079
+			public const int media_route_list = 2131492985;
 			
 			// aapt resource value: 0x7f0c0083
-			public const int media_route_volume_slider = 2131492995;
+			public const int media_route_volume_layout = 2131492995;
 			
-			// aapt resource value: 0x7f0c0096
-			public const int menu_settings = 2131493014;
+			// aapt resource value: 0x7f0c0084
+			public const int media_route_volume_slider = 2131492996;
+			
+			// aapt resource value: 0x7f0c0097
+			public const int menu_settings = 2131493015;
 			
 			// aapt resource value: 0x7f0c0016
 			public const int middle = 2131492886;
+			
+			// aapt resource value: 0x7f0c003a
+			public const int mini = 2131492922;
 			
 			// aapt resource value: 0x7f0c0033
 			public const int monochrome = 2131492915;
@@ -3499,17 +3567,20 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c001a
 			public const int never = 2131492890;
 			
+			// aapt resource value: 0x7f0c0076
+			public const int no_contacts_added = 2131492982;
+			
 			// aapt resource value: 0x7f0c000f
 			public const int none = 2131492879;
 			
 			// aapt resource value: 0x7f0c000b
 			public const int normal = 2131492875;
 			
-			// aapt resource value: 0x7f0c0044
-			public const int parentPanel = 2131492932;
+			// aapt resource value: 0x7f0c0045
+			public const int parentPanel = 2131492933;
 			
-			// aapt resource value: 0x7f0c007f
-			public const int play_pause = 2131492991;
+			// aapt resource value: 0x7f0c0080
+			public const int play_pause = 2131492992;
 			
 			// aapt resource value: 0x7f0c0026
 			public const int production = 2131492902;
@@ -3520,11 +3591,11 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0006
 			public const int progress_horizontal = 2131492870;
 			
-			// aapt resource value: 0x7f0c0051
-			public const int radio = 2131492945;
+			// aapt resource value: 0x7f0c0052
+			public const int radio = 2131492946;
 			
-			// aapt resource value: 0x7f0c007a
-			public const int route_name = 2131492986;
+			// aapt resource value: 0x7f0c007b
+			public const int route_name = 2131492987;
 			
 			// aapt resource value: 0x7f0c0027
 			public const int sandbox = 2131492903;
@@ -3535,56 +3606,56 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0020
 			public const int screen = 2131492896;
 			
-			// aapt resource value: 0x7f0c0049
-			public const int scrollView = 2131492937;
-			
-			// aapt resource value: 0x7f0c005b
-			public const int search_badge = 2131492955;
-			
-			// aapt resource value: 0x7f0c005a
-			public const int search_bar = 2131492954;
+			// aapt resource value: 0x7f0c004a
+			public const int scrollView = 2131492938;
 			
 			// aapt resource value: 0x7f0c005c
-			public const int search_button = 2131492956;
+			public const int search_badge = 2131492956;
 			
-			// aapt resource value: 0x7f0c0061
-			public const int search_close_btn = 2131492961;
-			
-			// aapt resource value: 0x7f0c006e
-			public const int search_contacts = 2131492974;
+			// aapt resource value: 0x7f0c005b
+			public const int search_bar = 2131492955;
 			
 			// aapt resource value: 0x7f0c005d
-			public const int search_edit_frame = 2131492957;
+			public const int search_button = 2131492957;
 			
-			// aapt resource value: 0x7f0c0063
-			public const int search_go_btn = 2131492963;
+			// aapt resource value: 0x7f0c0062
+			public const int search_close_btn = 2131492962;
+			
+			// aapt resource value: 0x7f0c006f
+			public const int search_contacts = 2131492975;
 			
 			// aapt resource value: 0x7f0c005e
-			public const int search_mag_icon = 2131492958;
-			
-			// aapt resource value: 0x7f0c005f
-			public const int search_plate = 2131492959;
-			
-			// aapt resource value: 0x7f0c0060
-			public const int search_src_text = 2131492960;
+			public const int search_edit_frame = 2131492958;
 			
 			// aapt resource value: 0x7f0c0064
-			public const int search_voice_btn = 2131492964;
+			public const int search_go_btn = 2131492964;
+			
+			// aapt resource value: 0x7f0c005f
+			public const int search_mag_icon = 2131492959;
+			
+			// aapt resource value: 0x7f0c0060
+			public const int search_plate = 2131492960;
+			
+			// aapt resource value: 0x7f0c0061
+			public const int search_src_text = 2131492961;
 			
 			// aapt resource value: 0x7f0c0065
-			public const int select_dialog_listview = 2131492965;
+			public const int search_voice_btn = 2131492965;
+			
+			// aapt resource value: 0x7f0c0066
+			public const int select_dialog_listview = 2131492966;
 			
 			// aapt resource value: 0x7f0c002b
 			public const int selectionDetails = 2131492907;
 			
-			// aapt resource value: 0x7f0c006b
-			public const int send_message_button = 2131492971;
+			// aapt resource value: 0x7f0c006c
+			public const int send_message_button = 2131492972;
 			
-			// aapt resource value: 0x7f0c007b
-			public const int settings = 2131492987;
+			// aapt resource value: 0x7f0c007c
+			public const int settings = 2131492988;
 			
-			// aapt resource value: 0x7f0c0050
-			public const int shortcut = 2131492944;
+			// aapt resource value: 0x7f0c0051
+			public const int shortcut = 2131492945;
 			
 			// aapt resource value: 0x7f0c0010
 			public const int showCustom = 2131492880;
@@ -3616,20 +3687,20 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0023
 			public const int src_over = 2131492899;
 			
-			// aapt resource value: 0x7f0c0089
-			public const int status_bar_latest_event_content = 2131493001;
+			// aapt resource value: 0x7f0c008a
+			public const int status_bar_latest_event_content = 2131493002;
 			
-			// aapt resource value: 0x7f0c0086
-			public const int stop = 2131492998;
+			// aapt resource value: 0x7f0c0087
+			public const int stop = 2131492999;
 			
 			// aapt resource value: 0x7f0c0028
 			public const int strict_sandbox = 2131492904;
 			
-			// aapt resource value: 0x7f0c0062
-			public const int submit_area = 2131492962;
+			// aapt resource value: 0x7f0c0063
+			public const int submit_area = 2131492963;
 			
-			// aapt resource value: 0x7f0c0081
-			public const int subtitle = 2131492993;
+			// aapt resource value: 0x7f0c0082
+			public const int subtitle = 2131492994;
 			
 			// aapt resource value: 0x7f0c000c
 			public const int tabMode = 2131492876;
@@ -3640,14 +3711,14 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0029
 			public const int test = 2131492905;
 			
-			// aapt resource value: 0x7f0c0091
-			public const int text = 2131493009;
+			// aapt resource value: 0x7f0c0092
+			public const int text = 2131493010;
 			
-			// aapt resource value: 0x7f0c008f
-			public const int text2 = 2131493007;
+			// aapt resource value: 0x7f0c0090
+			public const int text2 = 2131493008;
 			
-			// aapt resource value: 0x7f0c004a
-			public const int textSpacerNoButtons = 2131492938;
+			// aapt resource value: 0x7f0c004b
+			public const int textSpacerNoButtons = 2131492939;
 			
 			// aapt resource value: 0x7f0c0072
 			public const int textView1 = 2131492978;
@@ -3655,29 +3726,29 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0071
 			public const int textView2 = 2131492977;
 			
-			// aapt resource value: 0x7f0c0080
-			public const int text_wrapper = 2131492992;
+			// aapt resource value: 0x7f0c0081
+			public const int text_wrapper = 2131492993;
 			
-			// aapt resource value: 0x7f0c008d
-			public const int time = 2131493005;
+			// aapt resource value: 0x7f0c008e
+			public const int time = 2131493006;
 			
-			// aapt resource value: 0x7f0c0043
-			public const int title = 2131492931;
+			// aapt resource value: 0x7f0c0044
+			public const int title = 2131492932;
 			
-			// aapt resource value: 0x7f0c0079
-			public const int title_bar = 2131492985;
+			// aapt resource value: 0x7f0c007a
+			public const int title_bar = 2131492986;
 			
-			// aapt resource value: 0x7f0c0046
-			public const int title_template = 2131492934;
+			// aapt resource value: 0x7f0c0047
+			public const int title_template = 2131492935;
 			
 			// aapt resource value: 0x7f0c0075
 			public const int toolbar = 2131492981;
 			
-			// aapt resource value: 0x7f0c0045
-			public const int topPanel = 2131492933;
+			// aapt resource value: 0x7f0c0046
+			public const int topPanel = 2131492934;
 			
-			// aapt resource value: 0x7f0c0095
-			public const int txtvUserName = 2131493013;
+			// aapt resource value: 0x7f0c0096
+			public const int txtvUserName = 2131493014;
 			
 			// aapt resource value: 0x7f0c0008
 			public const int up = 2131492872;
@@ -5376,6 +5447,33 @@ namespace MidgardMessenger
 			
 			// aapt resource value: 4
 			public const int DrawerArrowToggle_topBottomBarArrowSize = 4;
+			
+			public static int[] FloatingActionButton = new int[]
+			{
+					2130772215,
+					2130772216,
+					2130772217,
+					2130772218,
+					2130772219,
+					2130772220};
+			
+			// aapt resource value: 2
+			public const int FloatingActionButton_fab_colorDisabled = 2;
+			
+			// aapt resource value: 1
+			public const int FloatingActionButton_fab_colorNormal = 1;
+			
+			// aapt resource value: 0
+			public const int FloatingActionButton_fab_colorPressed = 0;
+			
+			// aapt resource value: 3
+			public const int FloatingActionButton_fab_colorRipple = 3;
+			
+			// aapt resource value: 4
+			public const int FloatingActionButton_fab_shadow = 4;
+			
+			// aapt resource value: 5
+			public const int FloatingActionButton_fab_size = 5;
 			
 			public static int[] LinearLayoutCompat = new int[]
 			{

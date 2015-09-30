@@ -32,6 +32,7 @@ namespace MidgardMessenger
 			await ParsePush.SubscribeAsync (chatroom.webID);
 			RunOnUiThread (() => chatsAdapter.NotifyDataSetChanged ());
 			RunOnUiThread( () => FindViewById<ListView>(Resource.Id.chatsListView).SmoothScrollToPosition(chatsAdapter.GetCount() - 1));
+			Console.WriteLine ("Synched chatroom");
 
 
 		}

@@ -61,6 +61,8 @@ namespace MidgardMessenger
 		}
 
 		protected async Task SynchronizeWithParse(){
+			Console.WriteLine ("Synching");
+			Console.WriteLine ("sy " + DatabaseAccessors.CurrentUser ().webID);
 			ParseChatRoomDatabase parseDB = new ParseChatRoomDatabase ();
 			await parseDB.GetAndSyncChatRoomsAsync ();
 			Console.WriteLine ("synched");
@@ -110,7 +112,18 @@ namespace MidgardMessenger
 
 				getUpdatedInfo.Start ();
 
+				Task subscribeToUserChannel = new Task (async () => {
+					Console.WriteLine("Test + " +ParseUser.CurrentUser.ObjectId);
+					string channel = ParseUser.CurrentUser.ObjectId;
+					var installation = ParseInstallation.CurrentInstallation;
+					if(installation.Channels == null)
+						installation.Channels = new List<string>();
+					if(installation.Channels.Contains(channel) == false)
+						installation.Channels.Add(channel);
+					await installation.SaveAsync();
 
+				});
+				//subscribeToUserChannel.Start ();
 			} else {
 				var loginIntent = new Intent(this, typeof(LoginActivity));
 				StartActivity(loginIntent);
@@ -118,21 +131,29 @@ namespace MidgardMessenger
 
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
+			var noContactsTV = FindViewById<TextView> (Resource.Id.no_contacts_added);
 			CreateChatRooms ();
+			if (chatroomsAdapter.GetCount () > 0)
+				noContactsTV.Visibility = ViewStates.Gone;
 
 			var toolbar = FindViewById<Toolbar> (Resource.Id.toolbar);
 			//Toolbar will now take on default Action Bar characteristics
 			SetActionBar (toolbar);
+
 			ActionBar.Title = "Midgard Messenger";
 			// Get our button from the layout resource,
 			// and attach an event to it
+
+
 			Button button = FindViewById<Button> (Resource.Id.add_contact);
-
-
 
 			button.Click += delegate {
 				var intent = new Intent(this, typeof(ContactsActivity));
 				StartActivity(intent);
+			};
+			ParsePush.ParsePushNotificationReceived += async (sender, args) => {
+				Console.WriteLine("TEST PUSH PARSE");
+				await SynchronizeWithParse();
 			};
 		}
 		public override bool OnCreateOptionsMenu (IMenu menu)

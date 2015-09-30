@@ -39,8 +39,13 @@ namespace MidgardMessenger
 					chatroomUsers.Add(DatabaseAccessors.CurrentUser());
 					DatabaseAccessors.ChatRoomDatabaseAccessor.SaveChatRoomUsers(chatroomUsers, newchatroom);
 					var crus = DatabaseAccessors.ChatRoomDatabaseAccessor.GetChatRoomUsers(newchatroom.webID);
-					foreach(ChatRoomUser cru in crus)
+					foreach(ChatRoomUser cru in crus){
 						await pcrd.SaveChatRoomUsersAsync(cru);
+						var push = new ParsePush();
+						push.Channels = new List<string> {cru.userID};
+						push.Alert = "Your men might be requesting help!";
+						await push.SendAsync();
+					}
 					ChatsActivity.NotifyChatRoomsUpdate();
 
 					var intent = new Intent(this, typeof(ChatRoomActivity));
@@ -51,10 +56,6 @@ namespace MidgardMessenger
 				};
 			};
 
-			Button inviteBtn = FindViewById<Button> (Resource.Id.invite);
-			inviteBtn.Click += async (sender, e) => {
-				 
-			};
 
 
 		}
