@@ -14,6 +14,7 @@ using PerpetualEngine.Storage;
 using Facebook;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace MidgardMessenger
 {
@@ -39,6 +40,32 @@ namespace MidgardMessenger
 				intent.PutExtra("chatroom", currChatRoom.webID);
 				StartActivity(intent);
 			};
+			chatRoomsListView.ItemLongClick += async (object sender, AdapterView.ItemLongClickEventArgs e) => {
+				AlertDialog.Builder alert = new AlertDialog.Builder(this);
+				alert.SetTitle("Do you want to delete this chatroom?");
+				alert.SetPositiveButton("Yes", (senderAlert, args) => {
+					ChatRoom currChatRoom = chatroomsAdapter.GetChatRoomAt(e.Position);
+					ParsePush.UnsubscribeAsync (currChatRoom.webID);
+					ChatRoomUser cru = DatabaseAccessors.ChatRoomDatabaseAccessor.DeleteChatRoomUser(DatabaseAccessors.CurrentUser().webID, currChatRoom.webID);
+					DatabaseAccessors.ChatRoomDatabaseAccessor.DeleteChatRoom(currChatRoom.webID);
+					ParseChatRoomDatabase pcrd = new ParseChatRoomDatabase();
+					pcrd.DeleteChatRoomUserAsync(cru);
+					Console.WriteLine("ERASED");
+					chatroomsAdapter.NotifyDataSetChanged();
+
+				});
+				alert.SetNegativeButton("No", (senderAlert, args) => {
+				});	
+				alert.Show();
+			};
+		}
+
+		protected async Task SynchronizeWithParse(){
+			ParseChatRoomDatabase parseDB = new ParseChatRoomDatabase ();
+			await parseDB.GetAndSyncChatRoomsAsync ();
+			Console.WriteLine ("synched");
+			RunOnUiThread (() => chatroomsAdapter.NotifyDataSetChanged ());
+
 		}
 
 		protected override void OnCreate (Bundle bundle)
@@ -60,7 +87,7 @@ namespace MidgardMessenger
 					if (userInfo.ToList().Count == 0) {
 						var fb = new FacebookClient ();
 						fb.AccessToken = accessToken;
-						fb.GetTaskAsync ("me").ContinueWith (t => {
+						await fb.GetTaskAsync ("me").ContinueWith (t => {
 							if(!t.IsFaulted){
 								var result = (IDictionary<string, object>) t.Result;
 								string profileName = (string) result["name"];
@@ -73,7 +100,16 @@ namespace MidgardMessenger
 						});
 					}
 				});
+
 				getUserInfoTask.Start ();
+				
+
+				Task getUpdatedInfo = new Task (async () => {
+					await SynchronizeWithParse ();
+				});
+
+				getUpdatedInfo.Start ();
+
 
 			} else {
 				var loginIntent = new Intent(this, typeof(LoginActivity));

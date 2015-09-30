@@ -7,7 +7,7 @@ namespace MidgardMessenger
 		public ChatRoom ()
 		{
 		}
-
+		[PrimaryKey]
 		public string webID{ get; set; }
 
 	}

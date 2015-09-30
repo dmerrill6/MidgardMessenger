@@ -24,15 +24,15 @@ namespace MidgardMessenger
 			string documentsPath = System.Environment.GetFolderPath (System.Environment.SpecialFolder.Personal);
 			var path = Path.Combine (documentsPath, sqliteFilename);
 
-			if (!File.Exists (path)) {
-				
-
-				var s = Forms.Context.Resources.OpenRawResource(Resource.Raw.MidgardMessengerSQLite);
-
-				FileStream writeStream = new FileStream (path, FileMode.OpenOrCreate, FileAccess.Write);
-
-				ReadWriteStream (s, writeStream);
-			}
+//			if (!File.Exists (path)) {
+//				
+//
+//				var s = Forms.Context.Resources.OpenRawResource(Resource.Raw.MidgardMessengerSQLite);
+//
+//				FileStream writeStream = new FileStream (path, FileMode.OpenOrCreate, FileAccess.Write);
+//
+//				ReadWriteStream (s, writeStream);
+//			}
 
 			var conn = new SQLite.SQLiteConnection (path);
 

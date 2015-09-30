@@ -34,6 +34,11 @@ namespace MidgardMessenger
 			_contactList = DatabaseAccessors.UserDatabaseAccessor.GetUsers ().ToList ();
 		}
 
+		public override void NotifyDataSetChanged ()
+		{
+			FillContacts ();
+		}
+
 
 
 		public override int Count {

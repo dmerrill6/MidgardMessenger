@@ -27,6 +27,10 @@ namespace MidgardMessenger
 
 		}
 
+		public int GetCount(){
+			return _chatsList.Count ();
+		}
+
 		public override Java.Lang.Object GetItem (int position)
 		{
 			throw new NotImplementedException ();

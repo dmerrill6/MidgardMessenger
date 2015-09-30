@@ -1,7 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="cl.mjolnir.midgardmessenger">
 	<uses-sdk android:minSdkVersion="14" android:targetSdkVersion="21" />
-	<application android:label="Midgard Messenger" android:theme="@style/AppTheme">
+	<application android:name="cl.mjolnir.midgardmessenger.App" android:label="Midgard Messenger" android:theme="@style/AppTheme">
+		<service android:name="parse.ParsePushService" />
+		  <receiver android:name="parse.ParsePushBroadcastReceiver"
+		      android:permission="com.google.android.c2dm.permission.SEND">
+		    <intent-filter>
+		      <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+		      <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+		      <category android:name="cl.mjolnir.midgardmessenger" />
+		    </intent-filter>
+		  </receiver>
 	</application>
 	<uses-permission android:name="android.permission.READ_CONTACTS" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+	<permission android:protectionLevel="signature"
+	    android:name="cl.mjolnir.midgardmessenger.permission.C2D_MESSAGE" />
+	<uses-permission android:name="cl.mjolnir.midgardmessenger.permission.C2D_MESSAGE" />
 </manifest>

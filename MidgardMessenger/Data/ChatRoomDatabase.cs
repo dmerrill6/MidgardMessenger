@@ -60,6 +60,18 @@ namespace MidgardMessenger
 		}
 
 
+		public bool ExistsChatRoomUser(string chatroomId, string userId){
+			lock (chatroomUserLocker) {
+				return (chatroomUserDatabase.Table<ChatRoomUser> ().Where (x => x.chatRoomID == chatroomId && x.userID == userId).Count() > 0);
+			}
+		}
+
+		public bool ExistsChatRoom(string chatroomId){
+			lock (locker) {
+				return (database.Table<ChatRoom> ().Where (x => x.webID == chatroomId).Count() > 0);
+			}
+		}
+
 		public ChatRoom GetChatRoom (string id)
 		{
 			lock (locker) {
@@ -70,7 +82,6 @@ namespace MidgardMessenger
 		public string SaveChatRoom (ChatRoom chatroom)
 		{
 			lock (locker) {
-				
 				database.Insert (chatroom);
 				return chatroom.webID;
 
@@ -92,11 +103,19 @@ namespace MidgardMessenger
 			}
 		}
 
+		public ChatRoomUser DeleteChatRoomUser(string userId, string chatroomId){
+			lock (chatroomUserLocker) {
+				ChatRoomUser cru = chatroomUserDatabase.Table<ChatRoomUser> ().FirstOrDefault (x => x.userID == userId && x.chatRoomID == chatroomId);
+				chatroomUserDatabase.Delete<ChatRoomUser> (cru.ID);
+				return cru;
+			}
+		}
 
-		public int DeleteChatRoom(int id)
+		public void DeleteChatRoom(string id)
 		{
 			lock (locker) {
-				return database.Delete<ChatRoom> (id);
+				database.Delete<ChatRoom> (id);
+				return;
 			}
 		}
 	}

@@ -17,7 +17,7 @@ namespace MidgardMessenger
 	[Activity (Label = "ContactsActivity")]			
 	public class ContactsActivity : Activity
 	{
-		
+		protected ContactsAdapter contactsAdapter;
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -25,7 +25,7 @@ namespace MidgardMessenger
 			Button searchContactsBtn = FindViewById<Button> (Resource.Id.search_contacts);
 			searchContactsBtn.Click += async (sender, e) =>  {
 				GetParseUsers();
-				var contactsAdapter = new ContactsAdapter (this);
+				contactsAdapter = new ContactsAdapter (this);
 				var contactsListView = FindViewById<ListView> (Resource.Id.contactsListView);
 				contactsListView.Adapter = contactsAdapter;	
 				contactsListView.ItemClick += async (object sender2, AdapterView.ItemClickEventArgs e2) => {
@@ -65,10 +65,10 @@ namespace MidgardMessenger
 			foreach (var user in results) {
 				string userId = user ["userId"].ToString ();
 				string fullName = user["fullName"].ToString();
-
 				DatabaseAccessors.UserDatabaseAccessor.SaveUser (fullName, userId);
 
 			}
+			contactsAdapter.NotifyDataSetChanged ();
 		}
 	}
 }

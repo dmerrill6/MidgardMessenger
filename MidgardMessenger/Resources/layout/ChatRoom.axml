@@ -9,7 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/chatsListView"
-        android:paddingBottom="20dp" />
+        android:paddingBottom="70dp"
+        android:layout_marginBottom="0.0dp"
+        android:layout_marginRight="0.0dp" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"

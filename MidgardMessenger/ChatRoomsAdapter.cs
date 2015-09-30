@@ -37,8 +37,8 @@ namespace MidgardMessenger
 
 		public override void NotifyDataSetChanged ()
 		{
-			base.NotifyDataSetChanged ();
 			FillContacts ();
+			base.NotifyDataSetChanged ();
 		}
 
 		public override int Count {

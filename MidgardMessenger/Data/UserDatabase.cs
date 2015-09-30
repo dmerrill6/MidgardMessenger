@@ -30,6 +30,12 @@ namespace MidgardMessenger
 			}
 		}
 
+		public bool ExistsUser(string userId){
+			lock (locker) {
+				return ((database.Table<User> ().Where (x => x.webID == userId).Count()) > 0);
+			}
+		}
+
 		public User GetUser (string webId)
 		{
 			lock (locker) {

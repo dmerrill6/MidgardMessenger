@@ -18,6 +18,12 @@ namespace MidgardMessenger
 			database.CreateTable<ChatItem> ();
 		}
 
+		public bool ExistsChat(string chatId){
+			lock (locker) {
+				return (database.Table<ChatItem> ().Where (x => x.webId == chatId).Count () > 0);
+			}
+		}
+
 		public IEnumerable<ChatItem> GetChats ()
 		{
 			lock (locker) {

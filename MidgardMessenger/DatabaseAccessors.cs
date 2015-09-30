@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System;
 using Parse;
 
 namespace MidgardMessenger
@@ -8,6 +9,7 @@ namespace MidgardMessenger
 		static UserDatabase userDatabase;
 		static ChatRoomDatabase chatroomDatabase;
 		static ChatItemDatabase chatDatabase;
+		static ParseInstallation installation;
 
 		public static UserDatabase UserDatabaseAccessor{
 			get{
@@ -40,6 +42,8 @@ namespace MidgardMessenger
 		public static User CurrentUser(){
 			return UserDatabaseAccessor.GetUser (ParseUser.CurrentUser.ObjectId);
 		}
+
+
 	}
 }
 

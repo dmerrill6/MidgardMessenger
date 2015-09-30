@@ -45,9 +45,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Parse.Android">
-      <HintPath>..\packages\Parse.Android.1.3.1\lib\Parse.Android.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.GooglePlayServices.Base">
       <HintPath>..\packages\Xamarin.GooglePlayServices.Base.25.0.0.0\lib\MonoAndroid41\Xamarin.GooglePlayServices.Base.dll</HintPath>
     </Reference>
@@ -147,6 +144,9 @@
     <Reference Include="Xamarin.Forms.Platform">
       <HintPath>..\packages\Xamarin.Forms.1.5.0.6446\lib\MonoAndroid10\Xamarin.Forms.Platform.dll</HintPath>
     </Reference>
+    <Reference Include="Parse.Android">
+      <HintPath>..\packages\Parse.Android.1.6.0\lib\Parse.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -179,6 +179,55 @@
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
+    <None Include="Scripts\jquery-1.9.0-vsdoc.js" />
+    <None Include="Scripts\jquery-1.9.0.js" />
+    <None Include="Scripts\jquery-1.9.0.min.js" />
+    <None Include="Scripts\jquery-1.9.0.min.map" />
+    <None Include="Content\uikit.almost-flat.css" />
+    <None Include="Content\uikit.almost-flat.min.css" />
+    <None Include="Content\uikit.css" />
+    <None Include="Content\uikit.gradient.css" />
+    <None Include="Content\uikit.gradient.min.css" />
+    <None Include="Content\uikit.min.css" />
+    <None Include="fonts\fontawesome-webfont.eot" />
+    <None Include="fonts\fontawesome-webfont.ttf" />
+    <None Include="fonts\fontawesome-webfont.woff" />
+    <None Include="fonts\fontawesome-webfont.woff2" />
+    <None Include="fonts\FontAwesome.otf" />
+    <None Include="Scripts\core\alert.js" />
+    <None Include="Scripts\core\alert.min.js" />
+    <None Include="Scripts\core\button.js" />
+    <None Include="Scripts\core\button.min.js" />
+    <None Include="Scripts\core\core.js" />
+    <None Include="Scripts\core\core.min.js" />
+    <None Include="Scripts\core\cover.js" />
+    <None Include="Scripts\core\cover.min.js" />
+    <None Include="Scripts\core\dropdown.js" />
+    <None Include="Scripts\core\dropdown.min.js" />
+    <None Include="Scripts\core\grid.js" />
+    <None Include="Scripts\core\grid.min.js" />
+    <None Include="Scripts\core\modal.js" />
+    <None Include="Scripts\core\modal.min.js" />
+    <None Include="Scripts\core\nav.js" />
+    <None Include="Scripts\core\nav.min.js" />
+    <None Include="Scripts\core\offcanvas.js" />
+    <None Include="Scripts\core\offcanvas.min.js" />
+    <None Include="Scripts\core\scrollspy.js" />
+    <None Include="Scripts\core\scrollspy.min.js" />
+    <None Include="Scripts\core\smooth-scroll.js" />
+    <None Include="Scripts\core\smooth-scroll.min.js" />
+    <None Include="Scripts\core\switcher.js" />
+    <None Include="Scripts\core\switcher.min.js" />
+    <None Include="Scripts\core\tab.js" />
+    <None Include="Scripts\core\tab.min.js" />
+    <None Include="Scripts\core\toggle.js" />
+    <None Include="Scripts\core\toggle.min.js" />
+    <None Include="Scripts\core\touch.js" />
+    <None Include="Scripts\core\touch.min.js" />
+    <None Include="Scripts\core\utility.js" />
+    <None Include="Scripts\core\utility.min.js" />
+    <None Include="Scripts\uikit.js" />
+    <None Include="Scripts\uikit.min.js" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
