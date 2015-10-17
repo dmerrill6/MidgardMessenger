@@ -63,7 +63,7 @@ namespace MidgardMessenger
 		protected async Task SynchronizeWithParse(){
 			ParseChatRoomDatabase parseDB = new ParseChatRoomDatabase ();
 			await parseDB.GetAndSyncChatRoomsAsync ();
-			Console.WriteLine ("synched");
+
 			RunOnUiThread (() => chatroomsAdapter.NotifyDataSetChanged ());
 
 		}

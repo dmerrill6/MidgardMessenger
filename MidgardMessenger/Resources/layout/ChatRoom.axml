@@ -3,6 +3,9 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
+    <include
+        android:id="@+id/chatroom_toolbar"
+        layout="@layout/Toolbar" />
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"
@@ -10,8 +13,10 @@
         android:layout_height="match_parent"
         android:id="@+id/chatsListView"
         android:paddingBottom="70dp"
+        android:paddingTop="55dp"
         android:layout_marginBottom="0.0dp"
-        android:layout_marginRight="0.0dp" />
+        android:layout_marginRight="0.0dp"
+        android:transcriptMode="alwaysScroll" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"

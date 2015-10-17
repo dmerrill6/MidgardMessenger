@@ -20,9 +20,7 @@ namespace MidgardMessenger
 			// your Parse dashboard
 			ParseClient.Initialize("sq3Jmu8tZ60I8SIT2rR6dWIV3GJ8qM2i18BranLx",
 				"23e3kFxr90XyOhOfPIZ3zvnCqRBei1Z5DIr7vsDT");
-			ParsePush.ParsePushNotificationReceived += (object sender, ParsePushNotificationEventArgs e) => {
-				Console.WriteLine("PARSE PUSH");
-			};
+			
 		}
 	}
 }

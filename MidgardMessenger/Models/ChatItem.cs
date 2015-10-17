@@ -15,6 +15,8 @@ namespace MidgardMessenger
 		public string content { get; set; }
 		public string chatroomID { get; set; }
 		public string webId { get; set; }
+		public string pathToFile {get; set; }
+		public string fileName { get; set; }
 	}
 }
 
