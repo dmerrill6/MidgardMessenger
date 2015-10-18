@@ -63,6 +63,8 @@ namespace MidgardMessenger
 
             return resizedBitmap;
         }
+		
 	}
+
 }
 

@@ -5,8 +5,12 @@ using Parse;
 using System.IO;
 using System.Net;
 using Java.IO;
+using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
 using Android.Widget;
-
 namespace MidgardMessenger
 {
 	public class ParseChatItemDatabase
@@ -47,40 +51,50 @@ namespace MidgardMessenger
 				t.pathToFile = UtilsAndConstants.ImagesDir.Path;
 				t.fileName = pf.Name;
 				if (pf.Name.IndexOf ("MidgardPhoto") == -1) {
-					UtilsAndConstants.DownloadRemoteImageFile (pf.Url, t.pathToFile + "/" + t.fileName);
+					UtilsAndConstants.DownloadRemoteImageFile (pf.Url, t.fileName);
 					
 				} else {
-					var file = new Java.IO.File (Android.OS.Environment.GetExternalStoragePublicDirectory (Android.OS.Environment.DirectoryPictures) + "/" + t.fileName.Substring (t.fileName.IndexOf ("MidgardPhoto")));
+					string actualFileName = t.fileName.Substring (t.fileName.IndexOf ("MidgardPhoto"));
+					var file = new Java.IO.File (UtilsAndConstants.ImagesDir + "/" + actualFileName);
 					if (!file.Exists ()) {
-						
-						UtilsAndConstants.DownloadRemoteImageFile (pf.Url, file.Path);
-						
-
-					} else 
-					{
-						t.fileName = t.fileName.Substring (t.fileName.IndexOf ("MidgardPhoto"));
+						UtilsAndConstants.DownloadRemoteImageFile (pf.Url, actualFileName);
 					}
+					t.fileName = actualFileName;
+
 				}
 
 			}
 			return t;
 		}
 
-		public async Task SaveChatItemAsync(ChatItem chatItem)
+		public async Task SaveChatItemAsync (ChatItem chatItem)
 		{
 			ParseObject po = ToParseObject (chatItem);
-
+			try {
+				await po.SaveAsync ();
+			} catch (Exception e) {
+				System.Console.WriteLine("EXCEPTION " + e);
+			}
 			chatItem.webId = po.ObjectId;
 		}
 
-		public async Task SaveChatItemAsync(ChatItem chatItem, Action<int,string> actionCallback)
+		public async Task SaveChatItemAsync(ChatItem chatItem, ProgressBar progressBar, Activity activity )
 		{
 			ParseObject po = ToParseObject (chatItem);
 			ParseFile pf = (ParseFile)po["fileData"];
+			activity.RunOnUiThread(	 () => { progressBar.Visibility= Android.Views.ViewStates.Visible; });
+			int lastProgress = 0;
+			int epsilon = 10;
 			await pf.SaveAsync (new Progress<ParseUploadProgressEventArgs>(e => {
-				System.Console.WriteLine(e.Progress + "%");
-				System.Threading.Thread.Sleep(1000);
+				int currProgress = (int)(100*e.Progress);
+				System.Console.WriteLine(currProgress);
+				if (currProgress - lastProgress > epsilon){
+					activity.RunOnUiThread(	 () => { progressBar.Progress = currProgress; });
+					lastProgress = currProgress;
+				}
 			}));
+			activity.RunOnUiThread(	 () => { progressBar.Visibility= Android.Views.ViewStates.Gone; });
+
 			await po.SaveAsync();
 			chatItem.webId = po.ObjectId;
 		}

@@ -105,7 +105,20 @@ namespace MidgardMessenger
 				await SynchronizeWithParse();
 			};
 
+			UtilsAndConstants.downloadProgressChanged += (int progress) => {
+			RunOnUiThread( () => {
+				ProgressBar progressBar = FindViewById<ProgressBar>(Resource.Id.progressBarDownload);
+				progressBar.Visibility = ViewStates.Visible;
+				progressBar.Progress = progress;
+				if(progress >= 100){
+					progressBar.Visibility = ViewStates.Gone;
+					chatsAdapter.NotifyDataSetChanged();
+				}
+				
+			});
 
+				
+			};
 
 			getUpdatedInfo.Start ();
 		}
@@ -158,11 +171,16 @@ namespace MidgardMessenger
             DatabaseAccessors.ChatDatabaseAccessor.SaveItem(chatitem);
             chatsAdapter.NotifyDataSetChanged();
 			Task saveItemAsync = new Task (async () => {
-            	await pcid.SaveChatItemAsync(chatitem, chatImageUploadProgressUpdated);
+            	await pcid.SaveChatItemAsync(chatitem, FindViewById<ProgressBar>(Resource.Id.progressBarUpload), this);
+				var push = new ParsePush();
+				push.Channels = new List<string> {chatroom.webID};
+				push.Alert = "Your men might be requesting help!";
+				await push.SendAsync();
         	});
         	saveItemAsync.Start();
-            // Dispose of the Java side bitmap.
-            GC.Collect();
+
+			
+            
 		}
 
 		public override bool OnOptionsItemSelected (IMenuItem item)

@@ -12,12 +12,14 @@ using Android.Widget;
 using Android.Provider;
 using Android.Graphics;
 using System.Threading.Tasks;
+using Android.Graphics.Drawables;
 
 namespace MidgardMessenger
 {
 	public class ChatAdapter : BaseAdapter
 	{
 		List<ChatItem> _chatsList;
+		Dictionary<ChatItem, Bitmap> _chatToImageDict = new Dictionary<ChatItem, Bitmap>();
 		Activity _activity;
 		ChatRoom chatroom;
 
@@ -64,41 +66,87 @@ namespace MidgardMessenger
 
 		public override View GetView (int position, View convertView, ViewGroup parent)
 		{
-			var view = convertView ?? _activity.LayoutInflater.Inflate (
-				           Resource.Layout.ChatBubble, parent, false);
-			var username = view.FindViewById<TextView> (Resource.Id.chat_bubble_userName);
-			var message = view.FindViewById<TextView> (Resource.Id.chat_bubble_message);
-
+			ViewHolder holder;
 			ChatItem currChat = GetChatAt (position);
+			if (convertView == null) {
+				convertView = _activity.LayoutInflater.Inflate (
+					Resource.Layout.ChatBubble, parent, false);
+				holder = new ViewHolder ();
+				holder.usernameView = (TextView)convertView.FindViewById (Resource.Id.chat_bubble_userName); 
+				holder.contentView = (TextView)convertView.FindViewById (Resource.Id.chat_bubble_message); 
+				holder.imageView = (ImageView)convertView.FindViewById (Resource.Id.chatBubbleImage);
+				convertView.Tag = holder;
+			} else {
+				holder = (ViewHolder)convertView.Tag;
+			}
 
-			username.Text = DatabaseAccessors.UserDatabaseAccessor.GetUser (currChat.senderID).name;
-			message.Text = currChat.content;
-			var imageContainer = view.FindViewById<ImageView> (Resource.Id.chatBubbleImage);
-			if (currChat.fileName != null && currChat.pathToFile != null && imageContainer.Drawable == null) {
-				var path = currChat.pathToFile + "/" + currChat.fileName;
-				imageContainer.SetImageResource (Resource.Drawable.loading_image);
-				var progressTV = view.FindViewById<TextView>(Resource.Id.chatPhotoUploadProgressTV);
-				ChatRoomActivity.chatImageUploadProgressUpdated +=	(int i, string s) => {
+			User chatUser = DatabaseAccessors.UserDatabaseAccessor.GetUser (currChat.senderID);
+			RelativeLayout.LayoutParams layParams = (RelativeLayout.LayoutParams) holder.contentView.LayoutParameters; 
 
-						progressTV.Text = s;
-				};
-				if (System.IO.File.Exists (path)) {
-					
-					var imageFile = new Java.IO.File (path);
+			if (chatUser.ID != DatabaseAccessors.CurrentUser ().ID) {
+				holder.usernameView.Visibility = ViewStates.Visible;
+				holder.usernameView.Text = (chatUser.name);
+				holder.contentView.SetBackgroundColor(Color.LightGray);
+				layParams.AddRule(LayoutRules.AlignParentLeft);
+				layParams.RemoveRule(LayoutRules.AlignParentRight);
 
-					Bitmap bitmapToDisplay = BitmapHelpers.LoadAndResizeBitmap (imageFile.AbsolutePath, 400, 400);
-					imageContainer.SetImageBitmap (bitmapToDisplay);
+
+			} else {
+				holder.usernameView.Visibility = ViewStates.Gone;
+				layParams.AddRule(LayoutRules.AlignParentRight);
+				layParams.RemoveRule(LayoutRules.AlignParentLeft);
+				holder.contentView.SetBackgroundColor(Color.Rgb(205, 239, 250));
+				layParams.TopMargin = 25;
+
+			}
+			holder.contentView.LayoutParameters = layParams;
+
+			holder.contentView.Text = (currChat.content);
+
+
+			if (holder.imageView != null) {
+				if (currChat.fileName != null && currChat.pathToFile != null) {
+					var path = currChat.pathToFile + "/" + currChat.fileName;
+					holder.imageView.SetImageResource (Resource.Drawable.loading_image);
+
 				
+					if (System.IO.File.Exists (path)) {
+						
+						var imageFile = new Java.IO.File (path);
+						Bitmap bitmapToDisplay;
+						if (_chatToImageDict.ContainsKey (currChat))
+							bitmapToDisplay = _chatToImageDict [currChat];
+						else {
+							bitmapToDisplay = BitmapHelpers.LoadAndResizeBitmap (imageFile.AbsolutePath, 400, 400);
+							_chatToImageDict.Add (currChat, bitmapToDisplay);
+						}
+						holder.imageView.SetImageBitmap (bitmapToDisplay);
+						holder.imageView.Visibility = ViewStates.Visible;
+						holder.imageView.SetPadding(0,0,0,2);
 					
+					} else {
+						holder.imageView.SetImageResource (Resource.Drawable.image_broken);
+					
+					}
+				} else if( currChat.fileName == null || currChat.pathToFile == null) {
+					holder.imageView.SetImageBitmap(null);
+					holder.imageView.Visibility = ViewStates.Gone;
+					holder.imageView.SetPadding(0,0,0,0);
 				}
-			} else if( currChat.fileName == null || currChat.pathToFile == null) {
-				//imageContainer.SetImageBitmap(null);
+
 			}
 
 
 
-			return view;
+
+
+			return convertView;
 		}
+		private class ViewHolder : Java.Lang.Object{
+			public TextView usernameView;
+			 public TextView contentView;
+			 public ImageView imageView;
+		}	
 	}
 }
 

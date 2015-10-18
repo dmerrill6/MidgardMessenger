@@ -3184,49 +3184,52 @@ namespace MidgardMessenger
 			public const int Icon = 2130837621;
 			
 			// aapt resource value: 0x7f020076
-			public const int loading_image = 2130837622;
+			public const int image_broken = 2130837622;
 			
 			// aapt resource value: 0x7f020077
-			public const int mr_ic_audio_vol = 2130837623;
+			public const int loading_image = 2130837623;
 			
 			// aapt resource value: 0x7f020078
-			public const int mr_ic_media_route_connecting_mono_dark = 2130837624;
+			public const int mr_ic_audio_vol = 2130837624;
 			
 			// aapt resource value: 0x7f020079
-			public const int mr_ic_media_route_connecting_mono_light = 2130837625;
+			public const int mr_ic_media_route_connecting_mono_dark = 2130837625;
 			
 			// aapt resource value: 0x7f02007a
-			public const int mr_ic_media_route_mono_dark = 2130837626;
+			public const int mr_ic_media_route_connecting_mono_light = 2130837626;
 			
 			// aapt resource value: 0x7f02007b
-			public const int mr_ic_media_route_mono_light = 2130837627;
+			public const int mr_ic_media_route_mono_dark = 2130837627;
 			
 			// aapt resource value: 0x7f02007c
-			public const int mr_ic_pause_dark = 2130837628;
+			public const int mr_ic_media_route_mono_light = 2130837628;
 			
 			// aapt resource value: 0x7f02007d
-			public const int mr_ic_pause_light = 2130837629;
+			public const int mr_ic_pause_dark = 2130837629;
 			
 			// aapt resource value: 0x7f02007e
-			public const int mr_ic_play_dark = 2130837630;
+			public const int mr_ic_pause_light = 2130837630;
 			
 			// aapt resource value: 0x7f02007f
-			public const int mr_ic_play_light = 2130837631;
+			public const int mr_ic_play_dark = 2130837631;
 			
 			// aapt resource value: 0x7f020080
-			public const int mr_ic_settings_dark = 2130837632;
+			public const int mr_ic_play_light = 2130837632;
 			
 			// aapt resource value: 0x7f020081
-			public const int mr_ic_settings_light = 2130837633;
-			
-			// aapt resource value: 0x7f020084
-			public const int notification_template_icon_bg = 2130837636;
+			public const int mr_ic_settings_dark = 2130837633;
 			
 			// aapt resource value: 0x7f020082
-			public const int powered_by_google_dark = 2130837634;
+			public const int mr_ic_settings_light = 2130837634;
+			
+			// aapt resource value: 0x7f020085
+			public const int notification_template_icon_bg = 2130837637;
 			
 			// aapt resource value: 0x7f020083
-			public const int powered_by_google_light = 2130837635;
+			public const int powered_by_google_dark = 2130837635;
+			
+			// aapt resource value: 0x7f020084
+			public const int powered_by_google_light = 2130837636;
 			
 			static Drawable()
 			{
@@ -3241,14 +3244,14 @@ namespace MidgardMessenger
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0c006f
-			public const int ContactImage = 2131492975;
-			
 			// aapt resource value: 0x7f0c0070
-			public const int ContactName = 2131492976;
+			public const int ContactImage = 2131492976;
 			
-			// aapt resource value: 0x7f0c008a
-			public const int action0 = 2131493002;
+			// aapt resource value: 0x7f0c0071
+			public const int ContactName = 2131492977;
+			
+			// aapt resource value: 0x7f0c008b
+			public const int action0 = 2131493003;
 			
 			// aapt resource value: 0x7f0c0057
 			public const int action_bar = 2131492951;
@@ -3274,8 +3277,8 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0058
 			public const int action_context_bar = 2131492952;
 			
-			// aapt resource value: 0x7f0c008e
-			public const int action_divider = 2131493006;
+			// aapt resource value: 0x7f0c008f
+			public const int action_divider = 2131493007;
 			
 			// aapt resource value: 0x7f0c0002
 			public const int action_menu_divider = 2131492866;
@@ -3295,8 +3298,8 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c003d
 			public const int activity_chooser_view_content = 2131492925;
 			
-			// aapt resource value: 0x7f0c0079
-			public const int add_contact = 2131492985;
+			// aapt resource value: 0x7f0c007a
+			public const int add_contact = 2131492986;
 			
 			// aapt resource value: 0x7f0c0038
 			public const int adjust_height = 2131492920;
@@ -3310,8 +3313,8 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0017
 			public const int always = 2131492887;
 			
-			// aapt resource value: 0x7f0c0081
-			public const int art = 2131492993;
+			// aapt resource value: 0x7f0c0082
+			public const int art = 2131492994;
 			
 			// aapt resource value: 0x7f0c0014
 			public const int beginning = 2131492884;
@@ -3322,8 +3325,8 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c004d
 			public const int buttonPanel = 2131492941;
 			
-			// aapt resource value: 0x7f0c0087
-			public const int buttons = 2131492999;
+			// aapt resource value: 0x7f0c0088
+			public const int buttons = 2131493000;
 			
 			// aapt resource value: 0x7f0c002a
 			public const int buyButton = 2131492906;
@@ -3334,8 +3337,8 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c002f
 			public const int buy_with_google = 2131492911;
 			
-			// aapt resource value: 0x7f0c008b
-			public const int cancel_action = 2131493003;
+			// aapt resource value: 0x7f0c008c
+			public const int cancel_action = 2131493004;
 			
 			// aapt resource value: 0x7f0c0009
 			public const int cast_notification_id = 2131492873;
@@ -3343,32 +3346,29 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0067
 			public const int chatBubbleImage = 2131492967;
 			
-			// aapt resource value: 0x7f0c006d
-			public const int chatInputTextBox = 2131492973;
+			// aapt resource value: 0x7f0c006e
+			public const int chatInputTextBox = 2131492974;
 			
 			// aapt resource value: 0x7f0c0068
-			public const int chatPhotoUploadProgressTV = 2131492968;
-			
-			// aapt resource value: 0x7f0c0069
-			public const int chat_bubble_message = 2131492969;
+			public const int chat_bubble_message = 2131492968;
 			
 			// aapt resource value: 0x7f0c0066
 			public const int chat_bubble_userName = 2131492966;
 			
-			// aapt resource value: 0x7f0c006a
-			public const int chatroom_toolbar = 2131492970;
+			// aapt resource value: 0x7f0c0069
+			public const int chatroom_toolbar = 2131492969;
 			
-			// aapt resource value: 0x7f0c007a
-			public const int chatroomsListView = 2131492986;
+			// aapt resource value: 0x7f0c007b
+			public const int chatroomsListView = 2131492987;
 			
-			// aapt resource value: 0x7f0c006b
-			public const int chatsListView = 2131492971;
+			// aapt resource value: 0x7f0c006c
+			public const int chatsListView = 2131492972;
 			
 			// aapt resource value: 0x7f0c004f
 			public const int checkbox = 2131492943;
 			
-			// aapt resource value: 0x7f0c0091
-			public const int chronometer = 2131493009;
+			// aapt resource value: 0x7f0c0092
+			public const int chronometer = 2131493010;
 			
 			// aapt resource value: 0x7f0c0031
 			public const int classic = 2131492913;
@@ -3376,8 +3376,8 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0018
 			public const int collapseActionView = 2131492888;
 			
-			// aapt resource value: 0x7f0c0073
-			public const int contactsListView = 2131492979;
+			// aapt resource value: 0x7f0c0074
+			public const int contactsListView = 2131492980;
 			
 			// aapt resource value: 0x7f0c0048
 			public const int contentPanel = 2131492936;
@@ -3394,8 +3394,8 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0040
 			public const int default_activity_button = 2131492928;
 			
-			// aapt resource value: 0x7f0c0080
-			public const int default_control_frame = 2131492992;
+			// aapt resource value: 0x7f0c0081
+			public const int default_control_frame = 2131492993;
 			
 			// aapt resource value: 0x7f0c001c
 			public const int dialog = 2131492892;
@@ -3403,8 +3403,8 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c000d
 			public const int disableHome = 2131492877;
 			
-			// aapt resource value: 0x7f0c0088
-			public const int disconnect = 2131493000;
+			// aapt resource value: 0x7f0c0089
+			public const int disconnect = 2131493001;
 			
 			// aapt resource value: 0x7f0c0030
 			public const int donate_with_google = 2131492912;
@@ -3418,8 +3418,8 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0015
 			public const int end = 2131492885;
 			
-			// aapt resource value: 0x7f0c0096
-			public const int end_padder = 2131493014;
+			// aapt resource value: 0x7f0c0097
+			public const int end_padder = 2131493015;
 			
 			// aapt resource value: 0x7f0c003e
 			public const int expand_activities_button = 2131492926;
@@ -3454,23 +3454,23 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c003f
 			public const int image = 2131492927;
 			
-			// aapt resource value: 0x7f0c0097
-			public const int imgUser = 2131493015;
+			// aapt resource value: 0x7f0c0098
+			public const int imgUser = 2131493016;
 			
-			// aapt resource value: 0x7f0c0095
-			public const int info = 2131493013;
+			// aapt resource value: 0x7f0c0096
+			public const int info = 2131493014;
 			
-			// aapt resource value: 0x7f0c0072
-			public const int invite = 2131492978;
+			// aapt resource value: 0x7f0c0073
+			public const int invite = 2131492979;
 			
-			// aapt resource value: 0x7f0c008f
-			public const int line1 = 2131493007;
+			// aapt resource value: 0x7f0c0090
+			public const int line1 = 2131493008;
 			
-			// aapt resource value: 0x7f0c0093
-			public const int line3 = 2131493011;
+			// aapt resource value: 0x7f0c0094
+			public const int line3 = 2131493012;
 			
-			// aapt resource value: 0x7f0c006c
-			public const int linearLayout1 = 2131492972;
+			// aapt resource value: 0x7f0c006d
+			public const int linearLayout1 = 2131492973;
 			
 			// aapt resource value: 0x7f0c000a
 			public const int listMode = 2131492874;
@@ -3481,23 +3481,23 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c002c
 			public const int match_parent = 2131492908;
 			
-			// aapt resource value: 0x7f0c008d
-			public const int media_actions = 2131493005;
+			// aapt resource value: 0x7f0c008e
+			public const int media_actions = 2131493006;
 			
-			// aapt resource value: 0x7f0c007f
-			public const int media_route_control_frame = 2131492991;
+			// aapt resource value: 0x7f0c0080
+			public const int media_route_control_frame = 2131492992;
 			
-			// aapt resource value: 0x7f0c007b
-			public const int media_route_list = 2131492987;
-			
-			// aapt resource value: 0x7f0c0085
-			public const int media_route_volume_layout = 2131492997;
+			// aapt resource value: 0x7f0c007c
+			public const int media_route_list = 2131492988;
 			
 			// aapt resource value: 0x7f0c0086
-			public const int media_route_volume_slider = 2131492998;
+			public const int media_route_volume_layout = 2131492998;
 			
-			// aapt resource value: 0x7f0c009b
-			public const int menu_settings = 2131493019;
+			// aapt resource value: 0x7f0c0087
+			public const int media_route_volume_slider = 2131492999;
+			
+			// aapt resource value: 0x7f0c009c
+			public const int menu_settings = 2131493020;
 			
 			// aapt resource value: 0x7f0c0016
 			public const int middle = 2131492886;
@@ -3520,11 +3520,17 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0044
 			public const int parentPanel = 2131492932;
 			
-			// aapt resource value: 0x7f0c0082
-			public const int play_pause = 2131492994;
+			// aapt resource value: 0x7f0c0083
+			public const int play_pause = 2131492995;
 			
 			// aapt resource value: 0x7f0c0026
 			public const int production = 2131492902;
+			
+			// aapt resource value: 0x7f0c006b
+			public const int progressBarDownload = 2131492971;
+			
+			// aapt resource value: 0x7f0c006a
+			public const int progressBarUpload = 2131492970;
 			
 			// aapt resource value: 0x7f0c0005
 			public const int progress_circular = 2131492869;
@@ -3535,8 +3541,8 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0051
 			public const int radio = 2131492945;
 			
-			// aapt resource value: 0x7f0c007d
-			public const int route_name = 2131492989;
+			// aapt resource value: 0x7f0c007e
+			public const int route_name = 2131492990;
 			
 			// aapt resource value: 0x7f0c0027
 			public const int sandbox = 2131492903;
@@ -3562,8 +3568,8 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0061
 			public const int search_close_btn = 2131492961;
 			
-			// aapt resource value: 0x7f0c0071
-			public const int search_contacts = 2131492977;
+			// aapt resource value: 0x7f0c0072
+			public const int search_contacts = 2131492978;
 			
 			// aapt resource value: 0x7f0c005d
 			public const int search_edit_frame = 2131492957;
@@ -3589,14 +3595,14 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c002b
 			public const int selectionDetails = 2131492907;
 			
-			// aapt resource value: 0x7f0c009a
-			public const int send_file_button = 2131493018;
+			// aapt resource value: 0x7f0c009b
+			public const int send_file_button = 2131493019;
 			
-			// aapt resource value: 0x7f0c006e
-			public const int send_message_button = 2131492974;
+			// aapt resource value: 0x7f0c006f
+			public const int send_message_button = 2131492975;
 			
-			// aapt resource value: 0x7f0c007e
-			public const int settings = 2131492990;
+			// aapt resource value: 0x7f0c007f
+			public const int settings = 2131492991;
 			
 			// aapt resource value: 0x7f0c0050
 			public const int shortcut = 2131492944;
@@ -3610,11 +3616,11 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0012
 			public const int showTitle = 2131492882;
 			
-			// aapt resource value: 0x7f0c0076
-			public const int sign_in_button = 2131492982;
-			
 			// aapt resource value: 0x7f0c0077
-			public const int sign_in_facebook_button = 2131492983;
+			public const int sign_in_button = 2131492983;
+			
+			// aapt resource value: 0x7f0c0078
+			public const int sign_in_facebook_button = 2131492984;
 			
 			// aapt resource value: 0x7f0c0034
 			public const int slide = 2131492916;
@@ -3631,11 +3637,11 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0023
 			public const int src_over = 2131492899;
 			
-			// aapt resource value: 0x7f0c008c
-			public const int status_bar_latest_event_content = 2131493004;
+			// aapt resource value: 0x7f0c008d
+			public const int status_bar_latest_event_content = 2131493005;
 			
-			// aapt resource value: 0x7f0c0089
-			public const int stop = 2131493001;
+			// aapt resource value: 0x7f0c008a
+			public const int stop = 2131493002;
 			
 			// aapt resource value: 0x7f0c0028
 			public const int strict_sandbox = 2131492904;
@@ -3643,14 +3649,14 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0062
 			public const int submit_area = 2131492962;
 			
-			// aapt resource value: 0x7f0c0084
-			public const int subtitle = 2131492996;
+			// aapt resource value: 0x7f0c0085
+			public const int subtitle = 2131492997;
 			
 			// aapt resource value: 0x7f0c000c
 			public const int tabMode = 2131492876;
 			
-			// aapt resource value: 0x7f0c0099
-			public const int take_a_photograph_button = 2131493017;
+			// aapt resource value: 0x7f0c009a
+			public const int take_a_photograph_button = 2131493018;
 			
 			// aapt resource value: 0x7f0c0037
 			public const int terrain = 2131492919;
@@ -3658,44 +3664,44 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0029
 			public const int test = 2131492905;
 			
-			// aapt resource value: 0x7f0c0094
-			public const int text = 2131493012;
+			// aapt resource value: 0x7f0c0095
+			public const int text = 2131493013;
 			
-			// aapt resource value: 0x7f0c0092
-			public const int text2 = 2131493010;
+			// aapt resource value: 0x7f0c0093
+			public const int text2 = 2131493011;
 			
 			// aapt resource value: 0x7f0c004a
 			public const int textSpacerNoButtons = 2131492938;
 			
+			// aapt resource value: 0x7f0c0076
+			public const int textView1 = 2131492982;
+			
 			// aapt resource value: 0x7f0c0075
-			public const int textView1 = 2131492981;
+			public const int textView2 = 2131492981;
 			
-			// aapt resource value: 0x7f0c0074
-			public const int textView2 = 2131492980;
+			// aapt resource value: 0x7f0c0084
+			public const int text_wrapper = 2131492996;
 			
-			// aapt resource value: 0x7f0c0083
-			public const int text_wrapper = 2131492995;
-			
-			// aapt resource value: 0x7f0c0090
-			public const int time = 2131493008;
+			// aapt resource value: 0x7f0c0091
+			public const int time = 2131493009;
 			
 			// aapt resource value: 0x7f0c0043
 			public const int title = 2131492931;
 			
-			// aapt resource value: 0x7f0c007c
-			public const int title_bar = 2131492988;
+			// aapt resource value: 0x7f0c007d
+			public const int title_bar = 2131492989;
 			
 			// aapt resource value: 0x7f0c0046
 			public const int title_template = 2131492934;
 			
-			// aapt resource value: 0x7f0c0078
-			public const int toolbar = 2131492984;
+			// aapt resource value: 0x7f0c0079
+			public const int toolbar = 2131492985;
 			
 			// aapt resource value: 0x7f0c0045
 			public const int topPanel = 2131492933;
 			
-			// aapt resource value: 0x7f0c0098
-			public const int txtvUserName = 2131493016;
+			// aapt resource value: 0x7f0c0099
+			public const int txtvUserName = 2131493017;
 			
 			// aapt resource value: 0x7f0c0008
 			public const int up = 2131492872;

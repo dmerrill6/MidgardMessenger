@@ -260,6 +260,11 @@
     <AndroidResource Include="Resources\drawable-xhdpi\loading_image.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\loading_image.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\loading_image.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\image_broken.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\image_broken.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\image_broken.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\image_broken.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\image_broken.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.5.0.6446\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.5.0.6446\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
