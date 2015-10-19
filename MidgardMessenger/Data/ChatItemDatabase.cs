@@ -47,6 +47,15 @@ namespace MidgardMessenger
 
 			}
 		}
+
+		public ChatItem GetItem (string webId)
+		{
+			lock (locker) {
+				return database.Table<ChatItem> ().FirstOrDefault (x => x.webId == webId);
+
+			}
+		}
+
 		public int SaveItem (ChatItem item)
 		{
 			lock (locker) {

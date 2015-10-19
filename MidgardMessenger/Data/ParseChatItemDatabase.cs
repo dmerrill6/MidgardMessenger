@@ -50,16 +50,20 @@ namespace MidgardMessenger
 				ParseFile pf = (ParseFile)po ["fileData"];
 				t.pathToFile = UtilsAndConstants.ImagesDir.Path;
 				t.fileName = pf.Name;
-				if (pf.Name.IndexOf ("MidgardPhoto") == -1) {
-					UtilsAndConstants.DownloadRemoteImageFile (pf.Url, t.fileName);
-					
-				} else {
+				if (pf.Name.IndexOf ("MidgardPhoto") != -1) {
 					string actualFileName = t.fileName.Substring (t.fileName.IndexOf ("MidgardPhoto"));
 					var file = new Java.IO.File (UtilsAndConstants.ImagesDir + "/" + actualFileName);
 					if (!file.Exists ()) {
 						UtilsAndConstants.DownloadRemoteImageFile (pf.Url, actualFileName);
 					}
 					t.fileName = actualFileName;
+
+				} else {
+					string actualFileName = t.fileName;
+					var file = new Java.IO.File (UtilsAndConstants.ImagesDir + "/" + actualFileName);
+					if (!file.Exists ()) {
+						UtilsAndConstants.DownloadRemoteImageFile (pf.Url, actualFileName);
+					}
 
 				}
 
@@ -78,24 +82,25 @@ namespace MidgardMessenger
 			chatItem.webId = po.ObjectId;
 		}
 
-		public async Task SaveChatItemAsync(ChatItem chatItem, ProgressBar progressBar, Activity activity )
+		public async Task SaveChatItemAsync (ChatItem chatItem, ProgressBar progressBar, Activity activity)
 		{
 			ParseObject po = ToParseObject (chatItem);
-			ParseFile pf = (ParseFile)po["fileData"];
-			activity.RunOnUiThread(	 () => { progressBar.Visibility= Android.Views.ViewStates.Visible; });
-			int lastProgress = 0;
-			int epsilon = 10;
-			await pf.SaveAsync (new Progress<ParseUploadProgressEventArgs>(e => {
-				int currProgress = (int)(100*e.Progress);
-				System.Console.WriteLine(currProgress);
-				if (currProgress - lastProgress > epsilon){
-					activity.RunOnUiThread(	 () => { progressBar.Progress = currProgress; });
-					lastProgress = currProgress;
-				}
-			}));
-			activity.RunOnUiThread(	 () => { progressBar.Visibility= Android.Views.ViewStates.Gone; });
+			ParseFile pf = (ParseFile)po ["fileData"];
+			activity.RunOnUiThread (() => {
+				progressBar.Visibility = Android.Views.ViewStates.Visible;
+			});
 
-			await po.SaveAsync();
+			await pf.SaveAsync (new Progress<ParseUploadProgressEventArgs> (e => {
+				int currProgress = (int)(100 * e.Progress);
+				activity.RunOnUiThread (() => {
+					progressBar.Progress = currProgress;
+				});
+			}));
+			activity.RunOnUiThread (() => {
+				progressBar.Visibility = Android.Views.ViewStates.Gone;
+			});
+			await po.SaveAsync ();
+
 			chatItem.webId = po.ObjectId;
 		}
 
@@ -105,8 +110,9 @@ namespace MidgardMessenger
 
 			foreach (ParseObject chatPO in results) {
 				ChatItem chat = FromParseObject (chatPO);
-				if (DatabaseAccessors.ChatDatabaseAccessor.ExistsChat (chat.webId) == false)
-					DatabaseAccessors.ChatDatabaseAccessor.SaveItem (chat);
+				if(DatabaseAccessors.ChatDatabaseAccessor.ExistsChat(chat.webId))
+					chat.ID = DatabaseAccessors.ChatDatabaseAccessor.GetItem(chat.webId).ID;
+				DatabaseAccessors.ChatDatabaseAccessor.SaveItem (chat);
 				
 			}
 		}

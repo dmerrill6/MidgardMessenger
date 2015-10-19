@@ -3,6 +3,11 @@ using System.Net;
 using System.Linq;
 using System.IO;
 using System.Threading.Tasks;
+using System.Windows;
+using Android.App;
+using System.Collections.Generic;
+using Android.Database;
+
 namespace MidgardMessenger
 {
 	public static class UtilsAndConstants
@@ -47,6 +52,31 @@ namespace MidgardMessenger
 			if (!_imagesDir.Exists ()) {
 				_imagesDir.Mkdirs ();
 		    }	
+		}
+
+		public static bool isImage(string path){
+			List<string> ImageExtensions = new List<string> { ".JPG", ".JPE", ".BMP", ".GIF", ".PNG" };
+			if (ImageExtensions.Contains(System.IO.Path.GetExtension(path).ToUpperInvariant()))
+	        {
+	            return true;
+	        }
+	        return false;
+		}
+		public static bool isVideo(string path){
+			List<string> ImageExtensions = new List<string> { ".MP4"};
+			if (ImageExtensions.Contains(System.IO.Path.GetExtension(path).ToUpperInvariant()))
+	        {
+	            return true;
+	        }
+	        return false;
+		}
+		public static bool isAudio(string path){
+			List<string> ImageExtensions = new List<string> { ".WAV", ".MP3", ".OGG" };
+			if (ImageExtensions.Contains(System.IO.Path.GetExtension(path).ToUpperInvariant()))
+	        {
+	            return true;
+	        }
+	        return false;
 		}
 	}
 }

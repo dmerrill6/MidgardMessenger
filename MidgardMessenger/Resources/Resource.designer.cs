@@ -3496,8 +3496,8 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c0087
 			public const int media_route_volume_slider = 2131492999;
 			
-			// aapt resource value: 0x7f0c009c
-			public const int menu_settings = 2131493020;
+			// aapt resource value: 0x7f0c009f
+			public const int menu_settings = 2131493023;
 			
 			// aapt resource value: 0x7f0c0016
 			public const int middle = 2131492886;
@@ -3595,11 +3595,17 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c002b
 			public const int selectionDetails = 2131492907;
 			
-			// aapt resource value: 0x7f0c009b
-			public const int send_file_button = 2131493019;
+			// aapt resource value: 0x7f0c009e
+			public const int send_audio_button = 2131493022;
+			
+			// aapt resource value: 0x7f0c009c
+			public const int send_image_button = 2131493020;
 			
 			// aapt resource value: 0x7f0c006f
 			public const int send_message_button = 2131492975;
+			
+			// aapt resource value: 0x7f0c009d
+			public const int send_video_button = 2131493021;
 			
 			// aapt resource value: 0x7f0c007f
 			public const int settings = 2131492991;
@@ -3655,8 +3661,8 @@ namespace MidgardMessenger
 			// aapt resource value: 0x7f0c000c
 			public const int tabMode = 2131492876;
 			
-			// aapt resource value: 0x7f0c009a
-			public const int take_a_photograph_button = 2131493018;
+			// aapt resource value: 0x7f0c009b
+			public const int take_a_photograph_button = 2131493019;
 			
 			// aapt resource value: 0x7f0c0037
 			public const int terrain = 2131492919;
@@ -3708,6 +3714,9 @@ namespace MidgardMessenger
 			
 			// aapt resource value: 0x7f0c0013
 			public const int useLogo = 2131492883;
+			
+			// aapt resource value: 0x7f0c009a
+			public const int videoPlayerView = 2131493018;
 			
 			// aapt resource value: 0x7f0c001b
 			public const int withText = 2131492891;
@@ -3902,6 +3911,9 @@ namespace MidgardMessenger
 			
 			// aapt resource value: 0x7f03002f
 			public const int Toolbar = 2130903087;
+			
+			// aapt resource value: 0x7f030030
+			public const int VideoPlayer = 2130903088;
 			
 			static Layout()
 			{

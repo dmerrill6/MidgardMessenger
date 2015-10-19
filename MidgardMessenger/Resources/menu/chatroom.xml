@@ -6,7 +6,16 @@
       android:showAsAction="never"
       android:title="Take a Photograph" />
   <item
-      android:id="@+id/send_file_button"
+      android:id="@+id/send_image_button"
       android:showAsAction="never"
-      android:title="Send a File" />
+      android:title="Send an Image" />
+  <item
+      android:id="@+id/send_video_button"
+      android:showAsAction="never"
+      android:title="Send a Video" />
+  <item
+      android:id="@+id/send_audio_button"
+      android:showAsAction="never"
+      android:title="Send an Audio" />
+
 </menu>

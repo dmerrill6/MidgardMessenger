@@ -147,6 +147,9 @@
     <Reference Include="Parse.Android">
       <HintPath>..\packages\Parse.Android.1.6.0\lib\Parse.Android.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Mobile">
+      <HintPath>..\Components\xamarin.mobile-0.7.7\lib\android\Xamarin.Mobile.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -174,6 +177,7 @@
     <Compile Include="ChatAdapter.cs" />
     <Compile Include="Data\ParseChatItemDatabase.cs" />
     <Compile Include="BitmapHelpers.cs" />
+    <Compile Include="VideoPlayerActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -265,6 +269,7 @@
     <AndroidResource Include="Resources\drawable-xhdpi\image_broken.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\image_broken.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\image_broken.png" />
+    <AndroidResource Include="Resources\layout\VideoPlayer.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.5.0.6446\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.5.0.6446\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -284,6 +289,10 @@
   <ItemGroup>
     <XamarinComponentReference Include="facebook-sdk">
       <Version>6.2.2</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
+    <XamarinComponentReference Include="xamarin.mobile">
+      <Version>0.7.7</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>
