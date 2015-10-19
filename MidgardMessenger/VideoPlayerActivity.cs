@@ -22,8 +22,9 @@ namespace MidgardMessenger
 			base.OnCreate (bundle);
 
 			_chatItem = DatabaseAccessors.ChatDatabaseAccessor.GetItem( Intent.GetIntExtra ("chatItem", 0) );
-			VideoView videoView = FindViewById<VideoView>(Resource.Id.videoPlayerView);
 			SetContentView(Resource.Layout.VideoPlayer);
+			VideoView videoView = FindViewById<VideoView>(Resource.Id.videoPlayerView);
+			bool test = videoView.CanPause();
 			videoView.SetVideoPath(_chatItem.pathToFile + "/" + _chatItem.fileName);
 			videoView.Start();
 		}

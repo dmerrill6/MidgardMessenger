@@ -220,11 +220,12 @@ namespace MidgardMessenger
             chatitem.senderID = DatabaseAccessors.CurrentUser().webID;
 			DatabaseAccessors.ChatDatabaseAccessor.SaveItem(chatitem);
             chatsAdapter.NotifyDataSetChanged();
-			Task saveItemAsync = new Task (async () => {
 
+			
+
+			Task saveItemAsync = new Task (async () => {
 				await pcid.SaveChatItemAsync(chatitem, FindViewById<ProgressBar>(Resource.Id.progressBarUpload), this);
 				DatabaseAccessors.ChatDatabaseAccessor.SaveItem(chatitem);
-
 				var push = new ParsePush();
 				push.Channels = new List<string> {chatroom.webID};
 				push.Alert = "Your men might be requesting help!";
@@ -349,6 +350,8 @@ namespace MidgardMessenger
 			return System.IO.Path.Combine (folder, nname);
 		}
 
+
+
 		private void CaptureCameraImageAndSave ()
 		{
 			Intent mediaScanIntent = new Intent(Intent.ActionMediaScannerScanFile);
@@ -393,12 +396,10 @@ namespace MidgardMessenger
 					TakeAPicture();					
 					break;
 				case Resource.Id.send_video_button:
-					var videoIntent = new Intent ();
-				    videoIntent.SetType ("video/*");
-				    videoIntent.SetAction (Intent.ActionGetContent);
-
-				    StartActivityForResult (
-				        Intent.CreateChooser (videoIntent, "Select video"), SEND_VIDEO_RC);
+					Intent intent = new Intent();
+					intent.SetType("video/*");
+					intent.SetAction(Intent.ActionGetContent);
+					StartActivityForResult(Intent.CreateChooser(intent, "Send a Video"), SEND_VIDEO_RC);
 					break;
 			}	
 		
