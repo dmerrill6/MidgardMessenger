@@ -81,7 +81,8 @@ namespace MidgardMessenger
 		{
 			ParseChatRoomDatabase parseDB = new ParseChatRoomDatabase ();
 			await parseDB.GetAndSyncChatRoomsAsync ();
-			await ParsePush.SubscribeAsync (UtilsAndConstants.PUSH_PREFIX + DatabaseAccessors.CurrentUser ().webID);
+			if(DatabaseAccessors.CurrentUser() != null)
+				await ParsePush.SubscribeAsync (UtilsAndConstants.PUSH_PREFIX + DatabaseAccessors.CurrentUser ().webID);
 			foreach (ChatRoom cr in DatabaseAccessors.ChatRoomDatabaseAccessor.GetChatRooms()) {
 				await ParsePush.SubscribeAsync (UtilsAndConstants.PUSH_PREFIX + cr.webID);
 				ParseChatItemDatabase parseCIDB = new ParseChatItemDatabase();
