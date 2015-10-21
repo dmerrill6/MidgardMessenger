@@ -30,6 +30,10 @@ namespace MidgardMessenger
 			throw new NotImplementedException ();
 		}
 
+		public int GetCount(){
+			return _chatroomLists.Count ();
+		}
+
 		void FillContacts ()
 		{
 			_chatroomLists = DatabaseAccessors.ChatRoomDatabaseAccessor.GetChatRooms ().ToList ();

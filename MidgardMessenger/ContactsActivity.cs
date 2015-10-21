@@ -59,8 +59,13 @@ namespace MidgardMessenger
 					}
 					DatabaseAccessors.ChatRoomDatabaseAccessor.SaveChatRoomUsers(chatroomUsers, newchatroom);
 					var crus = DatabaseAccessors.ChatRoomDatabaseAccessor.GetChatRoomUsers(newchatroom.webID);
-					foreach(ChatRoomUser cru in crus)
+					foreach(ChatRoomUser cru in crus){
 						await pcrd.SaveChatRoomUsersAsync(cru);
+						var push = new ParsePush();
+						push.Channels = new List<string> {cru.userID};
+						push.Alert = "Your men might be requesting help!";
+						await push.SendAsync();
+					}
 					ChatsActivity.NotifyChatRoomsUpdate();
 					if(chatroom==null){
 						var intent = new Intent(this, typeof(ChatRoomActivity));
@@ -78,7 +83,10 @@ namespace MidgardMessenger
 				};
 			};
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 80b5fa3d56e0d5b59fbc37b348a94b8d004e62a5
 
 
 		}

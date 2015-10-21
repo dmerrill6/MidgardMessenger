@@ -48,6 +48,11 @@ namespace MidgardMessenger
 			await parseDB.GetAndSyncChatItemsAsync (chatroom.webID);
 			await ParsePush.SubscribeAsync (UtilsAndConstants.PUSH_PREFIX + chatroom.webID);
 			RunOnUiThread (() => chatsAdapter.NotifyDataSetChanged ());
+<<<<<<< HEAD
+=======
+			RunOnUiThread( () => FindViewById<ListView>(Resource.Id.chatsListView).SmoothScrollToPosition(chatsAdapter.GetCount() - 1));
+			Console.WriteLine ("Synched chatroom");
+>>>>>>> 80b5fa3d56e0d5b59fbc37b348a94b8d004e62a5
 
 			RunOnUiThread( () => FindViewById<ListView>(Resource.Id.chatsListView).SmoothScrollToPosition(chatsAdapter.GetCount() - 1));
 			//ChatsActivity.NotifyChatRoomsUpdate();

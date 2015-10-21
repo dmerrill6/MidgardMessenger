@@ -147,8 +147,16 @@
     <Reference Include="Parse.Android">
       <HintPath>..\packages\Parse.Android.1.6.0\lib\Parse.Android.dll</HintPath>
     </Reference>
+<<<<<<< HEAD
     <Reference Include="Xamarin.Mobile">
       <HintPath>..\Components\xamarin.mobile-0.7.7\lib\android\Xamarin.Mobile.dll</HintPath>
+=======
+    <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.RecyclerView.22.0.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
+    </Reference>
+    <Reference Include="Refractored.FloatingActionButton">
+      <HintPath>..\packages\Refractored.FloatingActionButton.1.3.0\lib\MonoAndroid10\Refractored.FloatingActionButton.dll</HintPath>
+>>>>>>> 80b5fa3d56e0d5b59fbc37b348a94b8d004e62a5
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -261,6 +269,7 @@
     <AndroidResource Include="Resources\raw\MidgardMessengerSQLite.db3" />
     <AndroidResource Include="Resources\layout\ChatRoom.axml" />
     <AndroidResource Include="Resources\layout\ChatBubble.axml" />
+<<<<<<< HEAD
     <AndroidResource Include="Resources\menu\chatroom.xml" />
     <AndroidResource Include="Resources\drawable-hdpi\loading_image.png" />
     <AndroidResource Include="Resources\drawable-mdpi\loading_image.png" />
@@ -287,6 +296,13 @@
     <AndroidResource Include="Resources\layout\ChatRoomInfo.axml" />
     <AndroidResource Include="Resources\layout\ChatRoomListItem.axml" />
     <AndroidResource Include="Resources\drawable-mdpi\rounded_corner.xml" />
+=======
+    <AndroidResource Include="Resources\drawable-hdpi\ic_add_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_add_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_add_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_add_white_24dp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\ic_add_white_24dp.png" />
+>>>>>>> 80b5fa3d56e0d5b59fbc37b348a94b8d004e62a5
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.5.0.6446\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.5.0.6446\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
