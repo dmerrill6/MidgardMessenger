@@ -16,6 +16,7 @@ namespace MidgardMessenger
 	public class ContactsAdapter : BaseAdapter
 	{
 		List<User> _contactList;
+		bool preventReload = false;
 		Activity _activity;
 
 		public ContactsAdapter (Activity activity)
@@ -33,10 +34,18 @@ namespace MidgardMessenger
 		{
 			_contactList = DatabaseAccessors.UserDatabaseAccessor.GetUsers ().ToList ();
 		}
+		public void SetContactList (List<User> contactList)
+		{
+			_contactList = contactList;
+			preventReload = true;
+			base.NotifyDataSetChanged();
+		}
 
 		public override void NotifyDataSetChanged ()
 		{
-			FillContacts ();
+			if(preventReload == false)
+				FillContacts();
+			base.NotifyDataSetChanged ();
 		}
 
 

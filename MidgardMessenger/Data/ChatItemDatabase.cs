@@ -40,6 +40,21 @@ namespace MidgardMessenger
 			}
 		}
 
+		public void MarkAsRead (ChatRoom chatroom)
+		{
+			var chats = GetChats (chatroom.webID);
+			foreach (ChatItem chat in chats) {
+				chat.read = true;
+				SaveItem(chat);
+			}
+		}
+		public int GetUnread (ChatRoom chatroom)
+		{
+			lock (locker) {
+				return( from i in database.Table<ChatItem>().Where(x => x.chatroomID == chatroom.webID).Where(x => x.read == false)
+					select i).ToList().Count;
+			}
+		}
 		public ChatItem GetItem (int id)
 		{
 			lock (locker) {

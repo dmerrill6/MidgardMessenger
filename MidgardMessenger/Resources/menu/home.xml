@@ -4,4 +4,8 @@
       android:id="@+id/menu_settings"
       android:showAsAction="never"
       android:title="Settings" />
+ <item
+      android:id="@+id/menu_create_chatroom"
+      android:showAsAction="never"
+      android:title="Organize Hunt" />
 </menu>

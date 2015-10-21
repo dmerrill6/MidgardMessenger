@@ -49,6 +49,7 @@ namespace MidgardMessenger
 
 		}
 
+
 		public IEnumerable<ChatRoomUser> GetChatRoomUsers(string chatroomId)
 		{
 			ChatRoom cr = GetChatRoom (chatroomId);
@@ -82,24 +83,36 @@ namespace MidgardMessenger
 		public string SaveChatRoom (ChatRoom chatroom)
 		{
 			lock (locker) {
+				
 				database.Insert (chatroom);
 				return chatroom.webID;
 
 			}
 
 		}
-
-
-		public void SaveChatRoomUsers(List<User> users, ChatRoom chatroom)
+		public string UpdateChatRoom (ChatRoom chatroom)
 		{
-			
-			lock (chatroomUserLocker) {
-				foreach (User user in users) {
-					ChatRoomUser cru = new ChatRoomUser ();
-					cru.chatRoomID = chatroom.webID;
-					cru.userID = user.webID;
-					chatroomUserDatabase.Insert (cru);
+			lock (locker) {
+				database.Update(chatroom);
+				return chatroom.webID;
+			}
+		}
+
+
+		public void SaveChatRoomUsers (List<User> users, ChatRoom chatroom)
+		{
+			List<ChatRoomUser> usersToAdd = new List<ChatRoomUser> ();
+			foreach (User user in users) {
+				ChatRoomUser cru = new ChatRoomUser ();
+				cru.chatRoomID = chatroom.webID;
+				cru.userID = user.webID;
+				if (ExistsChatRoomUser (cru.chatRoomID, cru.userID) == false) {
+					usersToAdd.Add(cru);
 				}
+			}
+			lock (chatroomUserLocker) {
+					foreach (ChatRoomUser cru in usersToAdd)
+						chatroomUserDatabase.Insert (cru);
 			}
 		}
 

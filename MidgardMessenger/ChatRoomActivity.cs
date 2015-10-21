@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Android.Media;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -31,6 +31,9 @@ namespace MidgardMessenger
 		private const int SEND_AUDIO_RC = 1;
 	    private const int SEND_IMAGE_RC = 2;
 		private const int SEND_VIDEO_RC = 3;
+		private const int ADD_CHATROOM_NAME_RC = 4;
+		private const int ADD_USER_TO_CONV_RC = 5;
+		private MediaPlayer _player;
 	    
 		protected ChatRoom chatroom;
 		public ChatRoom ChatRoomAccessor{
@@ -43,10 +46,11 @@ namespace MidgardMessenger
 		protected async Task SynchronizeWithParse(){
 			ParseChatItemDatabase parseDB = new ParseChatItemDatabase ();
 			await parseDB.GetAndSyncChatItemsAsync (chatroom.webID);
-			await ParsePush.SubscribeAsync (chatroom.webID);
+			await ParsePush.SubscribeAsync (UtilsAndConstants.PUSH_PREFIX + chatroom.webID);
 			RunOnUiThread (() => chatsAdapter.NotifyDataSetChanged ());
-			RunOnUiThread( () => FindViewById<ListView>(Resource.Id.chatsListView).SmoothScrollToPosition(chatsAdapter.GetCount() - 1));
 
+			RunOnUiThread( () => FindViewById<ListView>(Resource.Id.chatsListView).SmoothScrollToPosition(chatsAdapter.GetCount() - 1));
+			//ChatsActivity.NotifyChatRoomsUpdate();
 
 		}
 
@@ -56,18 +60,18 @@ namespace MidgardMessenger
 
 
 			chatroom = DatabaseAccessors.ChatRoomDatabaseAccessor.GetChatRoom (Intent.GetStringExtra ("chatroom"));
+			DatabaseAccessors.ChatDatabaseAccessor.MarkAsRead(chatroom);
+			var crus = DatabaseAccessors.ChatRoomDatabaseAccessor.GetChatRoomUsers(chatroom.webID);
 			SetContentView (Resource.Layout.ChatRoom);
 			var toolbar = FindViewById<Toolbar> (Resource.Id.chatroom_toolbar);
 			//Toolbar will now take on default Action Bar characteristics
 			SetActionBar (toolbar);
-			List<User> users = DatabaseAccessors.ChatRoomDatabaseAccessor.GetUsers(chatroom.webID).ToList();
-			string chatroomName = "Untitled";
-			if (users.Count > 0) {
-				chatroomName = users.ElementAt (0).name;
-				if (users.Count > 1 && chatroomName == DatabaseAccessors.CurrentUser ().name)
-					chatroomName = users.ElementAt (1).name;
-			}
-			ActionBar.Title = chatroomName;
+			toolbar.Click += (object sender, EventArgs e) => {
+				Intent intent = new Intent(this, typeof(ChatRoomInfoActivity));
+				intent.PutExtra("chatroomWebId", chatroom.webID);
+				StartActivityForResult(intent, ADD_CHATROOM_NAME_RC);
+			};
+			SetChatRoomName();
 			chatsAdapter = new ChatAdapter (this);
 			var chatsListView = FindViewById<ListView> (Resource.Id.chatsListView);
 			chatsListView.Adapter = chatsAdapter;
@@ -78,6 +82,11 @@ namespace MidgardMessenger
 					var intent = new Intent(this, typeof(VideoPlayerActivity));
 					intent.PutExtra("chatItem", chatItem.ID);
 					StartActivity(intent);
+				} else if (UtilsAndConstants.isAudio(path)){
+					_player.SetDataSource(path);
+					_player.Prepare ();
+					_player.Start();
+
 				}
 
 			};
@@ -101,9 +110,11 @@ namespace MidgardMessenger
 				DatabaseAccessors.ChatDatabaseAccessor.SaveItem(chat);
 				RunOnUiThread(() => chatsAdapter.NotifyDataSetChanged());
 				RunOnUiThread( () => FindViewById<ListView>(Resource.Id.chatsListView).SmoothScrollToPosition(chatsAdapter.GetCount() - 1));
+				DatabaseAccessors.ChatDatabaseAccessor.MarkAsRead(chatroom);
+
 
 				var push = new ParsePush();
-				push.Channels = new List<string> {chatroom.webID};
+				push.Channels = new List<string> {UtilsAndConstants.PUSH_PREFIX + chatroom.webID};
 				push.Alert = "Your men might be requesting help!";
 				await push.SendAsync();
 			};
@@ -115,6 +126,7 @@ namespace MidgardMessenger
 			ParsePush.ParsePushNotificationReceived += async (sender, args) => {
 				
 				await SynchronizeWithParse();
+				ChatsActivity.NotifyChatRoomsUpdate();
 			};
 
 			UtilsAndConstants.downloadProgressChanged += (int progress) => {
@@ -174,12 +186,56 @@ namespace MidgardMessenger
 						SaveSelectedImageFromGallery(data);
 						break;
 					case SEND_AUDIO_RC:
+						SaveRecordedAudio(data);
 						break;
 					case SEND_VIDEO_RC:
 						SaveSelectedVideoFromGallery(data);
 						break;
+					case ADD_CHATROOM_NAME_RC:
+						SetChatRoomName();
+						break;
 				}
 			}
+		}
+		private void SetChatRoomName ()
+		{
+			chatroom = DatabaseAccessors.ChatRoomDatabaseAccessor.GetChatRoom(chatroom.webID);
+			List<User> users = DatabaseAccessors.ChatRoomDatabaseAccessor.GetUsers(chatroom.webID).ToList();
+			string chatroomName = "Untitled";
+			if(chatroom.chatRoomName != null)
+				chatroomName = chatroom.chatRoomName;
+			else if (users.Count > 0) {
+				chatroomName = users.ElementAt (0).name;
+				if (users.Count > 1 && chatroomName == DatabaseAccessors.CurrentUser ().name)
+					chatroomName = users.ElementAt (1).name;
+			}
+			ActionBar.Title = chatroomName;
+		}
+		private void SaveRecordedAudio (Intent data)
+		{
+			var path = data.GetStringExtra("path");
+			string fileName = path.Substring(path.LastIndexOf('/') + 1);
+			string fullPath = path.Substring(0,path.LastIndexOf('/'));
+			ParseChatItemDatabase pcid = new ParseChatItemDatabase();
+            ChatItem chatitem = new ChatItem();
+            chatitem.chatroomID = chatroom.webID;
+            chatitem.content = DatabaseAccessors.CurrentUser().name + " sent an audio!";
+            chatitem.fileName = fileName;
+            chatitem.pathToFile = fullPath;
+            chatitem.senderID = DatabaseAccessors.CurrentUser().webID;
+			DatabaseAccessors.ChatDatabaseAccessor.SaveItem(chatitem);
+            chatsAdapter.NotifyDataSetChanged();
+			Task saveItemAsync = new Task (async () => {
+
+				await pcid.SaveChatItemAsync(chatitem, FindViewById<ProgressBar>(Resource.Id.progressBarUpload), this);
+				DatabaseAccessors.ChatDatabaseAccessor.SaveItem(chatitem);
+
+				var push = new ParsePush();
+				push.Channels = new List<string> {UtilsAndConstants.PUSH_PREFIX + chatroom.webID};
+				push.Alert = "Your men might be requesting help!";
+				await push.SendAsync();
+        	});
+        	saveItemAsync.Start();
 		}
 		private void SaveSelectedImageFromGallery(Intent data){
 			var path = GetFileForUriAsync(this, data.Data, true).Result.Item1;
@@ -200,7 +256,7 @@ namespace MidgardMessenger
 				DatabaseAccessors.ChatDatabaseAccessor.SaveItem(chatitem);
 
 				var push = new ParsePush();
-				push.Channels = new List<string> {chatroom.webID};
+				push.Channels = new List<string> {UtilsAndConstants.PUSH_PREFIX + chatroom.webID};
 				push.Alert = "Your men might be requesting help!";
 				await push.SendAsync();
         	});
@@ -227,7 +283,7 @@ namespace MidgardMessenger
 				await pcid.SaveChatItemAsync(chatitem, FindViewById<ProgressBar>(Resource.Id.progressBarUpload), this);
 				DatabaseAccessors.ChatDatabaseAccessor.SaveItem(chatitem);
 				var push = new ParsePush();
-				push.Channels = new List<string> {chatroom.webID};
+				push.Channels = new List<string> {UtilsAndConstants.PUSH_PREFIX + chatroom.webID};
 				push.Alert = "Your men might be requesting help!";
 				await push.SendAsync();
         	});
@@ -374,7 +430,7 @@ namespace MidgardMessenger
             	await pcid.SaveChatItemAsync(chatitem, FindViewById<ProgressBar>(Resource.Id.progressBarUpload), this);
 				DatabaseAccessors.ChatDatabaseAccessor.SaveItem(chatitem);
 				var push = new ParsePush();
-				push.Channels = new List<string> {chatroom.webID};
+				push.Channels = new List<string> {UtilsAndConstants.PUSH_PREFIX + chatroom.webID};
 				push.Alert = "Your men might be requesting help!";
 				await push.SendAsync();
         	});
@@ -384,23 +440,28 @@ namespace MidgardMessenger
 		public override bool OnOptionsItemSelected (IMenuItem item)
 		{	
 			switch (item.ItemId) {
-				case Resource.Id.send_image_button:
-					var imageIntent = new Intent ();
-				    imageIntent.SetType ("image/*");
-				    imageIntent.SetAction (Intent.ActionGetContent);
+			case Resource.Id.send_image_button:
+				var imageIntent = new Intent ();
+				imageIntent.SetType ("image/*");
+				imageIntent.SetAction (Intent.ActionGetContent);
 
-				    StartActivityForResult (
-				        Intent.CreateChooser (imageIntent, "Select photo"), SEND_IMAGE_RC);
-					break;
-				case Resource.Id.take_a_photograph_button:
-					TakeAPicture();					
-					break;
-				case Resource.Id.send_video_button:
-					Intent intent = new Intent();
-					intent.SetType("video/*");
-					intent.SetAction(Intent.ActionGetContent);
-					StartActivityForResult(Intent.CreateChooser(intent, "Send a Video"), SEND_VIDEO_RC);
-					break;
+				StartActivityForResult (
+					Intent.CreateChooser (imageIntent, "Select photo"), SEND_IMAGE_RC);
+				break;
+			case Resource.Id.take_a_photograph_button:
+				TakeAPicture ();					
+				break;
+			case Resource.Id.send_video_button:
+				Intent intent = new Intent ();
+				intent.SetType ("video/*");
+				intent.SetAction (Intent.ActionGetContent);
+				StartActivityForResult (Intent.CreateChooser (intent, "Send a Video"), SEND_VIDEO_RC);
+				break;
+			case Resource.Id.send_audio_button:
+				Intent audioIntent = new Intent (this, typeof(AudioRecorderActivity));
+				StartActivityForResult (audioIntent, SEND_AUDIO_RC);
+				break;
+			
 			}	
 		
 			return base.OnOptionsItemSelected (item);
@@ -411,6 +472,30 @@ namespace MidgardMessenger
 		protected void LoadMessages()
 		{
 			
+		}
+		protected override void OnResume ()
+		{	
+			base.OnResume ();
+			SetChatRoomName();
+
+			_player = new MediaPlayer ();
+			_player.Completion += (sender, e) => {
+				_player.Reset ();
+			
+			} ;
+
+		}
+
+		protected override void OnPause ()
+		{
+			base.OnPause ();
+
+			_player.Release ();
+
+			_player.Dispose ();
+
+			_player = null;
+
 		}
 	}
 

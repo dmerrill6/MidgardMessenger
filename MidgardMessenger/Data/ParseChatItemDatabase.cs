@@ -40,7 +40,8 @@ namespace MidgardMessenger
 			var t = new ChatItem ();
 			t.webId = po.ObjectId;
 			t.chatroomID = Convert.ToString (po ["chatroomId"]);
-			var test = po ["content"];
+			t.createdAt = (po.CreatedAt.Value);
+
 			if (po ["content"] != null)
 				t.content = Convert.ToString (po ["content"]);
 			else
@@ -104,14 +105,19 @@ namespace MidgardMessenger
 			chatItem.webId = po.ObjectId;
 		}
 
-		public async Task GetAndSyncChatItemsAsync(string chatroomId){
+		public async Task GetAndSyncChatItemsAsync (string chatroomId)
+		{
 			var query = ParseObject.GetQuery ("Chat").WhereEqualTo ("chatroomId", chatroomId);
 			var results = await query.FindAsync ();
 
 			foreach (ParseObject chatPO in results) {
 				ChatItem chat = FromParseObject (chatPO);
-				if(DatabaseAccessors.ChatDatabaseAccessor.ExistsChat(chat.webId))
-					chat.ID = DatabaseAccessors.ChatDatabaseAccessor.GetItem(chat.webId).ID;
+				if (DatabaseAccessors.ChatDatabaseAccessor.ExistsChat (chat.webId)) {
+					var currItem = DatabaseAccessors.ChatDatabaseAccessor.GetItem(chat.webId);
+					chat.ID = currItem.ID;
+					chat.read = currItem.read;
+					chat.createdAt = currItem.createdAt;
+				}
 				DatabaseAccessors.ChatDatabaseAccessor.SaveItem (chat);
 				
 			}

@@ -142,7 +142,11 @@ namespace MidgardMessenger
 						holder.imageView.Visibility = ViewStates.Visible;
 						holder.imageView.SetPadding (0, 0, 0, 2);
 					} else if (UtilsAndConstants.isAudio (path)) {
+						holder.imageView.SetImageResource (Resource.Drawable.audio);
+						holder.imageView.Visibility = ViewStates.Visible;
+						holder.imageView.SetPadding (0, 0, 0, 2);
 					}
+
 
 				} else if( currChat.fileName == null || currChat.pathToFile == null) {
 					holder.imageView.SetImageBitmap(null);

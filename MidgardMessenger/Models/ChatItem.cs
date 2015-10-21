@@ -6,7 +6,8 @@ namespace MidgardMessenger
 	{
 		public ChatItem ()
 		{
-			
+			read = false;
+			createdAt = DateTime.Now;
 		}
 
 		[PrimaryKey, AutoIncrement]
@@ -17,6 +18,8 @@ namespace MidgardMessenger
 		public string webId { get; set; }
 		public string pathToFile {get; set; }
 		public string fileName { get; set; }
+		public bool read { get; set; }
+		public DateTime createdAt { get ; set; }
 	}
 }
 

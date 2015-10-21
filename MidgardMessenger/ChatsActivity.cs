@@ -24,9 +24,12 @@ namespace MidgardMessenger
 		protected bool isLoggedIn;
 		protected ParseUser user;
 		protected static ChatRoomsAdapter chatroomsAdapter;
-		public static void NotifyChatRoomsUpdate(){
-			if(chatroomsAdapter != null)
+		public static void NotifyChatRoomsUpdate ()
+		{
+			if (chatroomsAdapter != null) {
 				chatroomsAdapter.NotifyDataSetChanged();
+			}
+			
 		}
 
 
@@ -34,6 +37,9 @@ namespace MidgardMessenger
 			chatroomsAdapter = new ChatRoomsAdapter (this);
 			var chatRoomsListView = FindViewById<ListView> (Resource.Id.chatroomsListView);
 			chatRoomsListView.Adapter = chatroomsAdapter;
+			if(chatroomsAdapter._chatroomLists.Count > 0)
+				FindViewById<TextView>(Resource.Id.textView1).Visibility = ViewStates.Gone;
+
 			chatRoomsListView.ItemClick += (object sender, AdapterView.ItemClickEventArgs e) => {
 				ChatRoom currChatRoom = chatroomsAdapter.GetChatRoomAt(e.Position);
 				var intent = new Intent(this, typeof(ChatRoomActivity));
@@ -58,12 +64,29 @@ namespace MidgardMessenger
 				});	
 				alert.Show();
 			};
+			ParsePush.ParsePushNotificationReceived += async (sender, args) => {
+				
+				await SynchronizeWithParse();
+			};
+
 		}
 
-		protected async Task SynchronizeWithParse(){
+		protected override void OnResume ()
+		{
+			base.OnResume ();
+			NotifyChatRoomsUpdate();
+		}
+
+		protected async Task SynchronizeWithParse ()
+		{
 			ParseChatRoomDatabase parseDB = new ParseChatRoomDatabase ();
 			await parseDB.GetAndSyncChatRoomsAsync ();
-
+			await ParsePush.SubscribeAsync (UtilsAndConstants.PUSH_PREFIX + DatabaseAccessors.CurrentUser ().webID);
+			foreach (ChatRoom cr in DatabaseAccessors.ChatRoomDatabaseAccessor.GetChatRooms()) {
+				await ParsePush.SubscribeAsync (UtilsAndConstants.PUSH_PREFIX + cr.webID);
+				ParseChatItemDatabase parseCIDB = new ParseChatItemDatabase();
+				await parseCIDB.GetAndSyncChatItemsAsync (cr.webID);
+			}
 			RunOnUiThread (() => chatroomsAdapter.NotifyDataSetChanged ());
 
 		}
@@ -140,9 +163,20 @@ namespace MidgardMessenger
 			MenuInflater.Inflate (Resource.Menu.home, menu);
 			return base.OnCreateOptionsMenu (menu);
 		}
+		protected override void OnActivityResult (int requestCode, Result resultCode, Intent data)
+		{
+			base.OnActivityResult (requestCode, resultCode, data);
+
+		}
 		public override bool OnOptionsItemSelected (IMenuItem item)
 		{	
-			Toast.MakeText(this, "Top ActionBar pressed: " + item.TitleFormatted, ToastLength.Short).Show();
+
+			switch (item.ItemId) {
+				case Resource.Id.menu_create_chatroom:
+					Intent intent = new Intent(this, typeof(CreateGroupChatActivity));
+					StartActivityForResult(intent, 0);
+					break;
+			}
 			return base.OnOptionsItemSelected (item);
 		}
 	}

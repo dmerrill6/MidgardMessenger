@@ -10,6 +10,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using System.Threading.Tasks;
 using Parse;
 
 namespace MidgardMessenger
@@ -23,38 +24,61 @@ namespace MidgardMessenger
 			base.OnCreate (bundle);
 			SetContentView (Resource.Layout.Contacts);
 			Button searchContactsBtn = FindViewById<Button> (Resource.Id.search_contacts);
+			ChatRoom chatroom = null;
+			string chatroomWebId = Intent.GetStringExtra("chatroomWebId");
+			if(chatroomWebId != null)
+				chatroom = DatabaseAccessors.ChatRoomDatabaseAccessor.GetChatRoom(chatroomWebId);
+
 			searchContactsBtn.Click += async (sender, e) =>  {
-				GetParseUsers();
 				contactsAdapter = new ContactsAdapter (this);
 				var contactsListView = FindViewById<ListView> (Resource.Id.contactsListView);
 				contactsListView.Adapter = contactsAdapter;	
+				if(chatroom == null){
+					GetParseUsers();
+				}
+				else{
+					GetParseUsersNotInChatRoom(chatroom);
+				}
 				contactsListView.ItemClick += async (object sender2, AdapterView.ItemClickEventArgs e2) => {
 					User curritem = contactsAdapter.GetUserAt(e2.Position);
 					ParseChatRoomDatabase pcrd = new ParseChatRoomDatabase();
-					ChatRoom newchatroom = new ChatRoom();
-					await pcrd.SaveChatRoomAsync(newchatroom);
-					DatabaseAccessors.ChatRoomDatabaseAccessor.SaveChatRoom(newchatroom);
+					ChatRoom newchatroom;
+					if(chatroom == null){
+						newchatroom = new ChatRoom();
+						await pcrd.SaveChatRoomAsync(newchatroom);
+						DatabaseAccessors.ChatRoomDatabaseAccessor.SaveChatRoom(newchatroom);
+					}
+					else {
+						newchatroom = chatroom;
+					}
+
 					List<User> chatroomUsers = new List<User>();
 					chatroomUsers.Add(curritem);
-					chatroomUsers.Add(DatabaseAccessors.CurrentUser());
+					if(chatroom==null && curritem.webID != DatabaseAccessors.CurrentUser().webID){
+						chatroomUsers.Add(DatabaseAccessors.CurrentUser());
+					}
 					DatabaseAccessors.ChatRoomDatabaseAccessor.SaveChatRoomUsers(chatroomUsers, newchatroom);
 					var crus = DatabaseAccessors.ChatRoomDatabaseAccessor.GetChatRoomUsers(newchatroom.webID);
 					foreach(ChatRoomUser cru in crus)
 						await pcrd.SaveChatRoomUsersAsync(cru);
 					ChatsActivity.NotifyChatRoomsUpdate();
+					if(chatroom==null){
+						var intent = new Intent(this, typeof(ChatRoomActivity));
+						intent.PutExtra("chatroom", newchatroom.webID);
+						StartActivity(intent);
+					}
+					var push = new ParsePush();
+					push.Channels = new List<string> {UtilsAndConstants.PUSH_PREFIX + curritem.webID};
+					push.Alert = "Your men might be requesting help!";
+					await push.SendAsync();
 
-					var intent = new Intent(this, typeof(ChatRoomActivity));
-					intent.PutExtra("chatroom", newchatroom.webID);
-					StartActivity(intent);
-
-					this.Finish();
+					Intent myIntent = new Intent(this, typeof(ContactsActivity));
+					SetResult(Result.Ok, myIntent);
+					Finish();
 				};
 			};
 
-			Button inviteBtn = FindViewById<Button> (Resource.Id.invite);
-			inviteBtn.Click += async (sender, e) => {
-				 
-			};
+
 
 
 		}
@@ -69,6 +93,27 @@ namespace MidgardMessenger
 
 			}
 			contactsAdapter.NotifyDataSetChanged ();
+		}
+
+		protected async void GetParseUsersNotInChatRoom (ChatRoom chatroom)
+		{
+			var usersInChatRoom = DatabaseAccessors.ChatRoomDatabaseAccessor.GetChatRoomUsers (chatroom.webID);
+
+			GetParseUsers ();
+
+			var allUsers = DatabaseAccessors.UserDatabaseAccessor.GetUsers ();
+			List<User> result = new List<User> ();
+			foreach (var user in allUsers) {
+				bool isContained = false;
+				foreach (var userInChatRoom in usersInChatRoom) {
+					if(userInChatRoom.userID == user.webID)
+						isContained = true;
+				}
+				if(isContained == false)
+					result.Add(user);
+			}
+			contactsAdapter.SetContactList (result);
+
 		}
 	}
 }

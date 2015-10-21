@@ -12,7 +12,8 @@
         android:text="@string/invite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/invite" />
+        android:id="@+id/invite"
+        android:enabled="false" />
     <ListView
         android:minWidth="25px"
         android:minHeight="25px"

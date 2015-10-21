@@ -178,6 +178,9 @@
     <Compile Include="Data\ParseChatItemDatabase.cs" />
     <Compile Include="BitmapHelpers.cs" />
     <Compile Include="VideoPlayerActivity.cs" />
+    <Compile Include="AudioRecorderActivity.cs" />
+    <Compile Include="CreateGroupChatActivity.cs" />
+    <Compile Include="ChatRoomInfoActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -270,6 +273,20 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\image_broken.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\image_broken.png" />
     <AndroidResource Include="Resources\layout\VideoPlayer.axml" />
+    <AndroidResource Include="Resources\layout\AudioRecorder.axml" />
+    <AndroidResource Include="Resources\drawable-mdpi\audio.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\audio.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\audio.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\audio.png" />
+    <AndroidResource Include="Resources\layout\CreateGroupChat.axml" />
+    <AndroidResource Include="Resources\drawable-hdpi\group_chat_icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\group_chat_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\group_chat_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\group_chat_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\group_chat_icon.png" />
+    <AndroidResource Include="Resources\layout\ChatRoomInfo.axml" />
+    <AndroidResource Include="Resources\layout\ChatRoomListItem.axml" />
+    <AndroidResource Include="Resources\drawable-mdpi\rounded_corner.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.5.0.6446\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.5.0.6446\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

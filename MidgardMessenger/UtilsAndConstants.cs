@@ -14,11 +14,20 @@ namespace MidgardMessenger
 	{
 		private static Java.IO.File _imagesDir;
 		public static Action<int> downloadProgressChanged;
+		public const string PUSH_PREFIX = "MM";
 		public static Java.IO.File ImagesDir{
 			get{
 				if(_imagesDir == null)
 					CreateDirectoryForPictures();
 				return _imagesDir;
+			}
+		}
+		private static Java.IO.File _audioDir;
+		public static Java.IO.File AudioDir{
+			get{
+				if(_audioDir == null)
+					CreateDirectoryForAudios();
+				return _audioDir;
 			}
 		}
 
@@ -53,6 +62,12 @@ namespace MidgardMessenger
 				_imagesDir.Mkdirs ();
 		    }	
 		}
+		private static void CreateDirectoryForAudios(){
+			_audioDir = new Java.IO.File (Android.OS.Environment.GetExternalStoragePublicDirectory (Android.OS.Environment.DirectoryPodcasts), "MidgardMessengerAudios");
+			if (!_audioDir.Exists ()) {
+				_audioDir.Mkdirs ();
+		    }	
+		}
 
 		public static bool isImage(string path){
 			List<string> ImageExtensions = new List<string> { ".JPG", ".JPE", ".BMP", ".GIF", ".PNG" };
@@ -71,7 +86,7 @@ namespace MidgardMessenger
 	        return false;
 		}
 		public static bool isAudio(string path){
-			List<string> ImageExtensions = new List<string> { ".WAV", ".MP3", ".OGG" };
+			List<string> ImageExtensions = new List<string> { ".WAV", ".MP3", ".OGG", ".3GPP" };
 			if (ImageExtensions.Contains(System.IO.Path.GetExtension(path).ToUpperInvariant()))
 	        {
 	            return true;
