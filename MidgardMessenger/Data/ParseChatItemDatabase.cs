@@ -27,9 +27,14 @@ namespace MidgardMessenger
 			po ["userId"] = chatitem.senderID;
 			po ["content"] = chatitem.content;
 			if (chatitem.fileName != null && chatitem.pathToFile != null) {
-				byte[] data = System.IO.File.ReadAllBytes(chatitem.pathToFile + "/" + chatitem.fileName);
-				ParseFile file = new ParseFile(chatitem.fileName, data);
-				po["fileData"] = file;
+				byte[] data = System.IO.File.ReadAllBytes (chatitem.pathToFile + "/" + chatitem.fileName);
+				ParseFile file = new ParseFile (chatitem.fileName, data);
+				po ["fileData"] = file;
+			}
+			if (chatitem.extra != null && chatitem.extra2 != null) {
+				byte[] data = System.IO.File.ReadAllBytes (chatitem.extra2 + "/" + chatitem.extra);
+				ParseFile file = new ParseFile (chatitem.extra, data);
+				po ["extraFile"] = file;
 			}
 			return po;
 		}
@@ -44,6 +49,7 @@ namespace MidgardMessenger
 
 			if (po ["content"] != null)
 				t.content = Convert.ToString (po ["content"]);
+			
 			else
 				t.content = "";	
 			t.senderID = Convert.ToString (po ["userId"]);
@@ -67,7 +73,27 @@ namespace MidgardMessenger
 					}
 
 				}
+			}
+			if (po.Keys.Contains ("extraFile") && po ["extraFile"] != null) {
+				ParseFile pf = (ParseFile)po ["extraFile"];
+				t.extra2 = UtilsAndConstants.ImagesDir.Path;
+				t.extra = pf.Name;
+				if (pf.Name.IndexOf ("MidgardPhoto") != -1) {
+					string actualFileName = t.extra.Substring (t.extra.IndexOf ("MidgardPhoto"));
+					var file = new Java.IO.File (UtilsAndConstants.ImagesDir + "/" + actualFileName);
+					if (!file.Exists ()) {
+						UtilsAndConstants.DownloadRemoteImageFile (pf.Url, actualFileName);
+					}
+					t.extra = actualFileName;
 
+				} else {
+					string actualFileName = t.extra;
+					var file = new Java.IO.File (UtilsAndConstants.ImagesDir + "/" + actualFileName);
+					if (!file.Exists ()) {
+						UtilsAndConstants.DownloadRemoteImageFile (pf.Url, actualFileName);
+					}
+
+				}
 			}
 			return t;
 		}

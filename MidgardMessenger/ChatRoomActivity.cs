@@ -33,6 +33,7 @@ namespace MidgardMessenger
 		private const int SEND_VIDEO_RC = 3;
 		private const int ADD_CHATROOM_NAME_RC = 4;
 		private const int ADD_USER_TO_CONV_RC = 5;
+		private const int SEND_MIDGARD_AUDIO_RC = 6;
 		private MediaPlayer _player;
 	    
 		protected ChatRoom chatroom;
@@ -87,6 +88,12 @@ namespace MidgardMessenger
 					_player.Prepare ();
 					_player.Start();
 
+				} else if(UtilsAndConstants.isImage(path) && chatItem.extra != null && chatItem.extra2 != null){
+					// Midgard Audio
+					string audiopath = chatItem.extra2 + "/" + chatItem.extra;
+					_player.SetDataSource(audiopath);
+					_player.Prepare ();
+					_player.Start();
 				}
 
 			};
@@ -194,6 +201,9 @@ namespace MidgardMessenger
 					case ADD_CHATROOM_NAME_RC:
 						SetChatRoomName();
 						break;
+					case SEND_MIDGARD_AUDIO_RC:
+						SaveMidgardAudio(data);
+						break;
 				}
 			}
 		}
@@ -211,6 +221,38 @@ namespace MidgardMessenger
 			}
 			ActionBar.Title = chatroomName;
 		}
+
+		private void SaveMidgardAudio(Intent data){
+			var imagePath = data.GetStringExtra("imagePath");
+			var audioPath = data.GetStringExtra("audioPath");
+			string imageFileName = imagePath.Substring(imagePath.LastIndexOf('/') + 1);
+			string imageFullPath = imagePath.Substring(0,imagePath.LastIndexOf('/'));
+			string audioFileName = audioPath.Substring(audioPath.LastIndexOf('/') + 1);
+			string audioFullPath = audioPath.Substring(0,audioPath.LastIndexOf('/'));
+			ParseChatItemDatabase pcid = new ParseChatItemDatabase();
+            ChatItem chatitem = new ChatItem();
+            chatitem.chatroomID = chatroom.webID;
+            chatitem.content = DatabaseAccessors.CurrentUser().name + " sent a MidgardAudio! Press the image to listen to it.";
+            chatitem.fileName = imageFileName;
+            chatitem.pathToFile = imageFullPath;
+            chatitem.extra = audioFileName;
+            chatitem.extra2 = audioFullPath;
+            chatitem.senderID = DatabaseAccessors.CurrentUser().webID;
+			DatabaseAccessors.ChatDatabaseAccessor.SaveItem(chatitem);
+            chatsAdapter.NotifyDataSetChanged();
+			Task saveItemAsync = new Task (async () => {
+
+				await pcid.SaveChatItemAsync(chatitem, FindViewById<ProgressBar>(Resource.Id.progressBarUpload), this);
+				DatabaseAccessors.ChatDatabaseAccessor.SaveItem(chatitem);
+
+				var push = new ParsePush();
+				push.Channels = new List<string> {UtilsAndConstants.PUSH_PREFIX + chatroom.webID};
+				push.Alert = "Your men might be requesting help!";
+				await push.SendAsync();
+        	});
+        	saveItemAsync.Start();
+		}
+
 		private void SaveRecordedAudio (Intent data)
 		{
 			var path = data.GetStringExtra("path");
@@ -290,7 +332,7 @@ namespace MidgardMessenger
         	saveItemAsync.Start();
 		}
 
-		internal static Task<Tuple<string, bool>> GetFileForUriAsync (Context context, Uri uri, bool isPhoto)
+		public static Task<Tuple<string, bool>> GetFileForUriAsync (Context context, Uri uri, bool isPhoto)
 		{
 			var tcs = new TaskCompletionSource<Tuple<string, bool>>();
 
@@ -461,7 +503,10 @@ namespace MidgardMessenger
 				Intent audioIntent = new Intent (this, typeof(AudioRecorderActivity));
 				StartActivityForResult (audioIntent, SEND_AUDIO_RC);
 				break;
-			
+			case Resource.Id.send_midgard_audio_button:
+				Intent mmIntent = new Intent(this, typeof(MidgardAudioCreateActivity));
+				StartActivityForResult(mmIntent, SEND_MIDGARD_AUDIO_RC);
+				break;
 			}	
 		
 			return base.OnOptionsItemSelected (item);

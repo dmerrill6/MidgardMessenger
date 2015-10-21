@@ -19,7 +19,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/audio_chronometer"
         android:textSize="30pt"
-        android:format="MM:SS"
         android:gravity="center_horizontal" />
     <Button
         android:text="Send Audio"

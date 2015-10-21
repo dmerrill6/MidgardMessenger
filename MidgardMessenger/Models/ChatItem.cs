@@ -20,6 +20,8 @@ namespace MidgardMessenger
 		public string fileName { get; set; }
 		public bool read { get; set; }
 		public DateTime createdAt { get ; set; }
+		public string extra { get; set; }
+		public string extra2 { get; set; }
 	}
 }
 
